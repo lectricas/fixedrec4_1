@@ -1,0 +1,47 @@
+<resources>
+    <string name="app_name">Fixed4</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <!--ERRORS AND DIALOGS-->
+    <string name="progress_dialog_message">Пожалуйста, подождите&#8230;</string>
+    <string name="title_error_dialog">Ошибка</string>
+    <string name="title_ok">Ок</string>
+    <string name="title_error_server_not_responding">Сервер не отвечает</string>
+    <string name="title_exit_from_app">Выйти</string>
+
+
+    <!--dialog-->
+    <string name="slide_up_tracks_statistics">Statistics</string>
+    <string name="slide_up_start">start</string>
+    <string name="slide_up_finish">finish</string>
+    <string name="type_car">Car ride</string>
+    <string name="type_bike">Bike ride</string>
+    <string name="type_foot">Foot hike</string>
+    <string name="default_type"></string>
+    <string name="max_speed">max: %1$.2f km/h</string>
+    <string name="avg_speed">avg: %1$.2f km/h</string>
+    <string name="total_distance">: %1$.2f m</string>
+    <string name="calories">%1$d cal</string>
+    <string name="km_with_put">%1$.1f km</string>
+    <string name="m_with_put">%.0f  m</string>
+    <string name="recording_now">Recording...</string>
+
+    <!--measures-->
+    <string name="hour">%1$d  h</string>
+    <string name="minute">%1$d  m</string>
+    <string name="km">km</string>
+    <string name="stop_recording">StopRecording</string>
+
+    <!--permissions-->
+    <string name="ok">OK</string>
+    <string name="permission_location_rationale">Location permission is needed to record your location, please grant.</string>
+    <string name="permision_available_location">Location Permission has been granted. Now you can record your location.</string>
+    <string name="permissions_not_granted">Permissions were not granted.</string>
+    <string name="canceled_continue_recording">Canceled, continue recording.</string>
+    <string name="no_need_to_refresh">No need to refresh</string>
+    
+    <!--menu-->
+    <string name="help_menu">меню помощи</string>
+    <string name="track_recording_menu">trackDTO recording</string>
+</resources>
