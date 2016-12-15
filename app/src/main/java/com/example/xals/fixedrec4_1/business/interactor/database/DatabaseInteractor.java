@@ -80,13 +80,11 @@ public class DatabaseInteractor implements IDatabaseInteractor {
 
     @Override
     public Observable<TrackUI> getCurrentTrackWithPoints() {
-        return getCurrentTrack().flatMap(trackDTO -> {
-            return databaseRepository.getPointsByTrackId(trackDTO.getId())
-                    .map(pointDTOs -> {
-                        trackDTO.setPoints(pointDTOs);
-                        return trackDTO;
-                    });
-        }).map(this::convertTrack);
+        return getCurrentTrack().flatMap(trackDTO -> databaseRepository.getPointsByTrackId(trackDTO.getId())
+                .map(pointDTOs -> {
+                    trackDTO.setPoints(pointDTOs);
+                    return trackDTO;
+                })).map(this::convertTrack);
     }
 
     @Override

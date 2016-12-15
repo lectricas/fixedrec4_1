@@ -45,17 +45,13 @@ public class GoogleMapFragment extends BaseFragment<MapPresenter> implements OnM
         return R.layout.fragment_google_map;
     }
 
-    @Override
-    public void onCreate(Bundle bundle) {
-        super.onCreate(bundle);
-        trackUI = ((TrackViewActivity) getActivity()).getTrackUI();
-        currentTrackUUIDView.setText(trackUI.getUuid());
-    }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initializeMap();
+        trackUI = ((TrackViewActivity) getActivity()).getTrackUI();
+        currentTrackUUIDView.setText(trackUI.getUuid());
     }
 
     public void initializeMap(){
