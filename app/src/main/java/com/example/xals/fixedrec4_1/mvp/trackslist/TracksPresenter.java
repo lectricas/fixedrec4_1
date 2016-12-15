@@ -56,7 +56,7 @@ public class TracksPresenter extends BasePresenter<TracksFragment> {
                 this::onError);
 
         restartableFirst(GET_CURRENT_TRACK,
-                () -> databaseInteractor.getCurrentTrackForUI()
+                () -> databaseInteractor.getCurrentTrackNoPoints()
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread()),
                 TracksFragment::onClosedTrackLoadedUIUpdate,

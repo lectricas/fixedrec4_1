@@ -8,10 +8,10 @@ import android.widget.TextView;
 
 import com.example.xals.fixedrec4_1.R;
 import com.example.xals.fixedrec4_1.business.dto.PointDTO;
+import com.example.xals.fixedrec4_1.business.dto.TrackDTO;
 import com.example.xals.fixedrec4_1.mvp.base.BaseFragment;
 import com.example.xals.fixedrec4_1.mvp.map.TrackViewActivity;
 import com.example.xals.fixedrec4_1.mvp.map.fragment.presenter.MapPresenter;
-import com.example.xals.fixedrec4_1.mvp.model.TrackUI;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -35,7 +35,7 @@ public class GoogleMapFragment extends BaseFragment<MapPresenter> implements OnM
     private GoogleMap map;
     private PolylineOptions polylineOptions;
     private LatLngBounds.Builder boundsBuilder;
-    private TrackUI trackUI;
+    private TrackDTO trackUI;
 
     @Bind(R.id.current_track_uuid)
     TextView currentTrackUUIDView;
@@ -48,14 +48,14 @@ public class GoogleMapFragment extends BaseFragment<MapPresenter> implements OnM
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-        trackUI = ((TrackViewActivity) getActivity()).getTrackUI();
-        currentTrackUUIDView.setText(trackUI.getUuid());
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initializeMap();
+        trackUI = ((TrackViewActivity) getActivity()).getTrackDTO();
+        currentTrackUUIDView.setText(trackUI.getUuid());
     }
 
     public void initializeMap(){

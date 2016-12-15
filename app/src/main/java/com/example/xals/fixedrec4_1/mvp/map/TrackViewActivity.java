@@ -1,6 +1,7 @@
 package com.example.xals.fixedrec4_1.mvp.map;
 
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
@@ -11,11 +12,11 @@ import android.support.v4.view.ViewPager;
 import android.widget.Button;
 
 import com.example.xals.fixedrec4_1.R;
+import com.example.xals.fixedrec4_1.business.dto.TrackDTO;
 import com.example.xals.fixedrec4_1.mvp.base.BaseActivity;
 import com.example.xals.fixedrec4_1.mvp.main.MainActivity;
 import com.example.xals.fixedrec4_1.mvp.map.adapter.TrackViewPageAdapter;
 import com.example.xals.fixedrec4_1.mvp.map.fragment.GoogleMapFragment;
-import com.example.xals.fixedrec4_1.mvp.model.TrackUI;
 import com.example.xals.fixedrec4_1.service.LocationService;
 
 import java.util.ArrayList;
@@ -26,14 +27,13 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import lombok.Getter;
 import nucleus.factory.RequiresPresenter;
-import se.emilsjolander.intentbuilder.Extra;
-import se.emilsjolander.intentbuilder.IntentBuilder;
 
 
-@IntentBuilder
 @RequiresPresenter(TrackViewPresenter.class)
 public class TrackViewActivity extends BaseActivity<TrackViewPresenter> {
 
+    public static final String START_NEW_TRACK_EXTRA = "start_new_track_extra";
+    public static final String TRACK_UUID_EXTRA = "trackUUID_extra";
     @Bind(R.id.viewpager)
     ViewPager viewPager;
 
@@ -46,11 +46,11 @@ public class TrackViewActivity extends BaseActivity<TrackViewPresenter> {
     LocationService service = null;
     Intent serviceIntent;
 
-    @Extra Boolean startNewTrack;
-    @Extra String trackUUID;
+    Boolean startNewTrack;
+    String trackUUID;
 
     @Getter
-    TrackUI trackUI;
+    TrackDTO trackDTO;
 
     ServiceConnection serviceConnection = new ServiceConnection() {
         @Override
@@ -69,9 +69,11 @@ public class TrackViewActivity extends BaseActivity<TrackViewPresenter> {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        TrackViewActivityIntentBuilder.inject(getIntent(), this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
+
+        startNewTrack = getIntent().getBooleanExtra(START_NEW_TRACK_EXTRA, false);
+        trackUUID = getIntent().getStringExtra(TRACK_UUID_EXTRA);
 
         ButterKnife.bind(this);
         serviceIntent = new Intent(this, LocationService.class);
@@ -80,8 +82,8 @@ public class TrackViewActivity extends BaseActivity<TrackViewPresenter> {
         getPresenter().checkIfTrackRunningToHideButton(trackUUID);
     }
 
-    public void onCurrentTrackRunningChecked(TrackUI trackUI, int visibility) {
-        this.trackUI = trackUI;
+    public void onCurrentTrackRunningChecked(TrackDTO track, int visibility) {
+        this.trackDTO = track;
         stopRecordingButton.setVisibility(visibility);
 
         //initializing fragments here
@@ -110,7 +112,7 @@ public class TrackViewActivity extends BaseActivity<TrackViewPresenter> {
         return fragments;
     }
 
-    public void onTrackClosed(TrackUI closedTrack) {
+    public void onTrackClosed(TrackDTO closedTrack) {
         setResult(RESULT_OK);
         finishActivity();
     }
@@ -129,5 +131,19 @@ public class TrackViewActivity extends BaseActivity<TrackViewPresenter> {
         } else {
             finish();
         }
+    }
+
+    public static Intent getIntentInstance(Context context, Boolean startNewTrack, String trackUUID) {
+        Intent intent = new Intent(context, TrackViewActivity.class);
+        intent.putExtra(START_NEW_TRACK_EXTRA, startNewTrack);
+        intent.putExtra(TRACK_UUID_EXTRA, trackUUID);
+        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        return intent;
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
     }
 }

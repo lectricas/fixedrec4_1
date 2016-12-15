@@ -1,13 +1,11 @@
 package com.example.xals.fixedrec4_1.mvp.map;
 
-import android.database.Observable;
 import android.os.Bundle;
 import android.view.View;
 
 
 import com.example.xals.fixedrec4_1.business.interactor.database.IDatabaseInteractor;
 import com.example.xals.fixedrec4_1.mvp.base.BasePresenter;
-import com.example.xals.fixedrec4_1.mvp.model.TrackUI;
 
 import javax.inject.Inject;
 
