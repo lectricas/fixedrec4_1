@@ -41,6 +41,9 @@ public class PointDTO extends Model {
     @Column(name = "speed")
     float speed;
 
+    @Column(name = "bearing")
+    float bearing;
+
     public static final String COLUMN_TRACK_ID = "track_id";
     @Column(name = COLUMN_TRACK_ID)
     long track_id;

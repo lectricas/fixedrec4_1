@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.xals.fixedrec4_1.R;
-import com.example.xals.fixedrec4_1.mvp.model.TrackUI;
+import com.example.xals.fixedrec4_1.business.dto.TrackDTO;
 import com.example.xals.fixedrec4_1.util.Convert;
 
 import java.util.ArrayList;
@@ -24,7 +24,7 @@ import butterknife.ButterKnife;
 public class TrackAdapter extends RecyclerView.Adapter<TrackAdapter.ViewHolder>  {
 
     private Context context;
-    private List<TrackUI> tracks;
+    private List<TrackDTO> tracks;
     private OnItemClickListener listener;
     private LayoutInflater inflater;
 
@@ -35,20 +35,20 @@ public class TrackAdapter extends RecyclerView.Adapter<TrackAdapter.ViewHolder> 
         this.tracks = new ArrayList<>();
     }
 
-    public void add(TrackUI track) {
+    public void add(TrackDTO track) {
         if (!tracks.contains(track)) {
             tracks.add(track);
         }
         notifyDataSetChanged();
     }
 
-    public void update(TrackUI trackUI) {
-        tracks.remove(trackUI);
-        tracks.add(trackUI);
+    public void update(TrackDTO track) {
+        tracks.remove(track);
+        tracks.add(track);
         notifyDataSetChanged();
     }
 
-    public void setTracks(List<TrackUI> tracks) {
+    public void setTracks(List<TrackDTO> tracks) {
         this.tracks.clear();
         this.tracks = tracks;
         notifyDataSetChanged();
@@ -62,13 +62,16 @@ public class TrackAdapter extends RecyclerView.Adapter<TrackAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(ViewHolder vh, int position) {
-        TrackUI trackDTO = tracks.get(position);
-        vh.name.setText(trackDTO.getUuid());
+        TrackDTO trackDTO = tracks.get(position);
+
         if (trackDTO.isRunning()){
-            vh.thumbnail.setImageResource(R.mipmap.ic_launcher);
+            vh.name.setText(Convert.formatDateAndTime(trackDTO.getDateCreated()));
+            vh.thumbnail.setImageResource(R.drawable.ic_action_record);
             vh.distanceTimeTv.setText(context.getString(R.string.recording_now));
             blink(vh.thumbnail);
         }else {
+            vh.name.setText(Convert.formatDateAndTime(trackDTO.getDateClosed()));
+            vh.thumbnail.setImageResource(R.drawable.ic_satellite);
             vh.thumbnail.setAnimation(null);
             String distance = Convert.getKmIfNeeded(trackDTO.getDistance(), context);
             String totalTime = Convert.getDateDiff(trackDTO.getDateCreated(),
@@ -106,7 +109,7 @@ public class TrackAdapter extends RecyclerView.Adapter<TrackAdapter.ViewHolder> 
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         @Bind(R.id.name) TextView name;
-        @Bind(R.id.timeEnd) TextView dateEnd;
+        @Bind(R.id.comment) TextView dateEnd;
         @Bind(R.id.thumbnail) ImageView thumbnail;
         @Bind(R.id.distance_and_time) TextView distanceTimeTv;
 
@@ -123,7 +126,7 @@ public class TrackAdapter extends RecyclerView.Adapter<TrackAdapter.ViewHolder> 
     }
 
     public interface OnItemClickListener {
-        void onItemClicked(TrackUI trackDTO);
+        void onItemClicked(TrackDTO trackDTO);
     }
 
 }

@@ -5,7 +5,6 @@ import android.content.Context;
 
 import com.example.xals.fixedrec4_1.di.module.ApplicationModule;
 import com.example.xals.fixedrec4_1.repository.FixedRetrofitApi;
-import com.example.xals.fixedrec4_1.repository.database.IDatabaseRepository;
 import com.example.xals.fixedrec4_1.util.AppPreferences;
 import com.example.xals.fixedrec4_1.util.RxBus;
 import com.google.gson.Gson;
@@ -28,6 +27,4 @@ public interface ApplicationComponent {
     Gson providesGson();
 
     RxBus providesRxBus();
-
-    IDatabaseRepository providesDatabaseRepository();
 }

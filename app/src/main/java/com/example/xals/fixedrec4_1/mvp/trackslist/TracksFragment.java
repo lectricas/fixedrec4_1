@@ -1,28 +1,21 @@
 package com.example.xals.fixedrec4_1.mvp.trackslist;
 
 import android.Manifest;
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import com.example.xals.fixedrec4_1.R;
+import com.example.xals.fixedrec4_1.business.dto.TrackDTO;
 import com.example.xals.fixedrec4_1.mvp.base.BaseFragment;
 import com.example.xals.fixedrec4_1.mvp.map.TrackViewActivity;
-import com.example.xals.fixedrec4_1.mvp.map.TrackViewActivityIntentBuilder;
-import com.example.xals.fixedrec4_1.mvp.model.TrackUI;
+import com.example.xals.fixedrec4_1.mvp.trackslist.adapter.LinearManagerWithScroll;
 import com.example.xals.fixedrec4_1.mvp.trackslist.adapter.TrackAdapter;
 import com.example.xals.fixedrec4_1.util.Convert;
 import com.tbruyelle.rxpermissions.RxPermissions;
@@ -46,11 +39,13 @@ public class TracksFragment extends BaseFragment<TracksPresenter> implements Tra
     CoordinatorLayout coordinatorLayout;
 
     TrackAdapter trackAdapter;
+    LinearManagerWithScroll manager;
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        LinearLayoutManager manager = new LinearLayoutManager(getActivity());
+
+        manager = new LinearManagerWithScroll(getActivity());
         manager.setReverseLayout(true);
         manager.setStackFromEnd(true);
         trackAdapter = new TrackAdapter(getContext(), this);
@@ -65,7 +60,7 @@ public class TracksFragment extends BaseFragment<TracksPresenter> implements Tra
         getPresenter().checkTrackStateForView();
     }
 
-    public void onGotTracks(List<TrackUI> tracks) {
+    public void onGotTracks(List<TrackDTO> tracks) {
         trackAdapter.setTracks(tracks);
     }
 
@@ -87,8 +82,6 @@ public class TracksFragment extends BaseFragment<TracksPresenter> implements Tra
                 .subscribe(permission -> {
                     if (permission.granted) {
                         getPresenter().createNewTrack();
-                        Snackbar.make(coordinatorLayout, R.string.permision_available_location,
-                                Snackbar.LENGTH_SHORT).show();
                     } else if (permission.shouldShowRequestPermissionRationale) {
                         Snackbar.make(coordinatorLayout, R.string.permissions_not_granted,
                                 Snackbar.LENGTH_SHORT).show();
@@ -105,10 +98,9 @@ public class TracksFragment extends BaseFragment<TracksPresenter> implements Tra
     }
 
     @Override
-    public void onItemClicked(TrackUI trackDTO) {
-        startActivityForResult(new TrackViewActivityIntentBuilder(
-                false, trackDTO.getUuid()).build(getActivity()),
-                Convert.REQUEST_TRACK_CLOSE);
+    public void onItemClicked(TrackDTO trackDTO) {
+        startActivityForResult(TrackViewActivity.getIntentInstance(getContext(),
+                false, trackDTO.getUuid()), Convert.REQUEST_TRACK_CLOSE);
     }
 
     @Override
@@ -128,14 +120,14 @@ public class TracksFragment extends BaseFragment<TracksPresenter> implements Tra
         }
     }
 
-    public  void onClosedTrackLoadedUIUpdate(TrackUI closedTrack) {
+    public void onClosedTrackLoadedUIUpdate(TrackDTO closedTrack) {
         trackAdapter.update(closedTrack);
     }
 
-    public void onNewTrackSaved(TrackUI track) {
+    public void onNewTrackSaved(TrackDTO track) {
         trackAdapter.add(track);
-        startActivityForResult(new TrackViewActivityIntentBuilder(
-                true, track.getUuid()).build(getActivity()),
-                Convert.REQUEST_TRACK_CLOSE);
+        tracksRv.scrollToPosition(trackAdapter.getItemCount() - 1);
+        startActivityForResult(TrackViewActivity.getIntentInstance(getContext(),
+                true, track.getUuid()), Convert.REQUEST_TRACK_CLOSE);
     }
 }

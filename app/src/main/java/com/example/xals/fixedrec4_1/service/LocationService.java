@@ -17,17 +17,15 @@ import android.util.Log;
 
 import com.example.xals.fixedrec4_1.Fix4Application;
 import com.example.xals.fixedrec4_1.R;
+import com.example.xals.fixedrec4_1.business.dto.PointDTO;
 import com.example.xals.fixedrec4_1.business.dto.TrackDTO;
 import com.example.xals.fixedrec4_1.business.interactor.database.IDatabaseInteractor;
 import com.example.xals.fixedrec4_1.mvp.map.TrackViewActivity;
-import com.example.xals.fixedrec4_1.mvp.map.TrackViewActivityIntentBuilder;
 import com.example.xals.fixedrec4_1.util.Convert;
 import com.example.xals.fixedrec4_1.util.RxBus;
 
 import javax.annotation.Nullable;
 import javax.inject.Inject;
-
-import rx.schedulers.Schedulers;
 
 
 public class LocationService extends Service implements LocationListener, GpsStatus.Listener {
@@ -55,7 +53,7 @@ public class LocationService extends Service implements LocationListener, GpsSta
     public void onCreate() {
         super.onCreate();
         ((Fix4Application) getApplication()).getServiceComponent().inject(this);
-        databaseInteractor.getCurrentTrack().subscribe(trackDTO -> {
+        databaseInteractor.getCurrentTrackNoPoints().subscribe(trackDTO -> {
             currentTrackDTO = trackDTO;
             initializeNotificationIntent(trackDTO);
         });
@@ -64,8 +62,8 @@ public class LocationService extends Service implements LocationListener, GpsSta
     }
 
     private void initializeNotificationIntent(TrackDTO currentTrackDTO) {
-        Intent notificationIntent = new TrackViewActivityIntentBuilder(
-                true, currentTrackDTO.getUuid()).build(this);
+        Intent notificationIntent = TrackViewActivity.getIntentInstance(this,
+                true, currentTrackDTO.getUuid());
 
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0,
                 notificationIntent, 0);
@@ -106,14 +104,20 @@ public class LocationService extends Service implements LocationListener, GpsSta
     @Override
     public void onLocationChanged(Location location) {
 
+        PointDTO pointDTO = PointDTO.builder()
+                .track_id(currentTrackDTO.getId())
+                .lat(location.getLatitude())
+                .lng(location.getLongitude())
+                .accuracy(location.getAccuracy())
+                .dateCreated(Convert.getCurrentDate())
+                .speed(location.getSpeed())
+                .bearing(location.getBearing())
+                .build();
+
+        rxBus.send(pointDTO);
+
         if (currentTrackDTO.isRunning()) {
-            databaseInteractor.saveTrackPoint(
-                    currentTrackDTO.getId(),
-                    location.getLatitude(),
-                    location.getLongitude(),
-                    location.getAccuracy(),
-                    location.getSpeed()
-            );
+            databaseInteractor.saveTrackPoint(pointDTO);
             Log.d("LocationService", "PointSaved");
         } else {
             Log.d("LocationService", "SkipPoint");

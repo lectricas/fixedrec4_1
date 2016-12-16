@@ -33,7 +33,7 @@ public abstract class Convert {
     }
 
     public static String formatDateAndTime(Date date){
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH-mm");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm");
         return  dateFormat.format(date);
     }
 

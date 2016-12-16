@@ -1,12 +1,17 @@
 package com.example.xals.fixedrec4_1.mvp.map.fragment.presenter;
 
 import android.os.Bundle;
+import android.util.Log;
 
+import com.example.xals.fixedrec4_1.business.dto.PointDTO;
 import com.example.xals.fixedrec4_1.mvp.base.BasePresenter;
 import com.example.xals.fixedrec4_1.mvp.map.fragment.GoogleMapFragment;
 import com.example.xals.fixedrec4_1.util.AppPreferences;
 
 import javax.inject.Inject;
+
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 
 public class MapPresenter extends BasePresenter<GoogleMapFragment> {
@@ -16,9 +21,24 @@ public class MapPresenter extends BasePresenter<GoogleMapFragment> {
     @Inject
     AppPreferences preferences;
 
+
     @Override
     protected void onCreate(Bundle savedState) {
         super.onCreate(savedState);
+
+        deliverReplay().call(rxBus.toObserverable())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(recieved -> {
+                    recieved.split((googleMapFragment, o) -> {
+                        if (o instanceof PointDTO) {
+                            Log.d("MapPresenter", "PointRecieved");
+                            googleMapFragment.pointReceived(((PointDTO) o));
+                        }
+                    },(googleMapFragment1, throwable) -> {
+
+                    });
+                });
 //
 //        restartableFirst(LOAD_TRACK_BY_UUD,
 //                () -> loadPriceList.call(null)

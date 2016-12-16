@@ -6,8 +6,6 @@ import android.content.Context;
 
 import com.example.xals.fixedrec4_1.Fix4Application;
 import com.example.xals.fixedrec4_1.repository.FixedRetrofitApi;
-import com.example.xals.fixedrec4_1.repository.database.DatabaseRepository;
-import com.example.xals.fixedrec4_1.repository.database.IDatabaseRepository;
 import com.example.xals.fixedrec4_1.util.AppPreferences;
 import com.example.xals.fixedrec4_1.util.RxBus;
 import com.facebook.stetho.okhttp3.StethoInterceptor;
@@ -52,12 +50,6 @@ public class ApplicationModule {
     AppPreferences providesAppPreferences() {
         return ProxyPreferences.build(AppPreferences.class,
                 application.getSharedPreferences(AppPreferences.NAME, Context.MODE_PRIVATE));
-    }
-
-    @Provides
-    @Singleton
-    IDatabaseRepository providesDatabaseRepository() {
-        return new DatabaseRepository();
     }
 
     @Provides

@@ -8,10 +8,10 @@ import android.widget.TextView;
 
 import com.example.xals.fixedrec4_1.R;
 import com.example.xals.fixedrec4_1.business.dto.PointDTO;
+import com.example.xals.fixedrec4_1.business.dto.TrackDTO;
 import com.example.xals.fixedrec4_1.mvp.base.BaseFragment;
 import com.example.xals.fixedrec4_1.mvp.map.TrackViewActivity;
 import com.example.xals.fixedrec4_1.mvp.map.fragment.presenter.MapPresenter;
-import com.example.xals.fixedrec4_1.mvp.model.TrackUI;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -35,7 +35,8 @@ public class GoogleMapFragment extends BaseFragment<MapPresenter> implements OnM
     private GoogleMap map;
     private PolylineOptions polylineOptions;
     private LatLngBounds.Builder boundsBuilder;
-    private TrackUI trackUI;
+    private TrackDTO trackUI;
+    private boolean canAddPoints;
 
     @Bind(R.id.current_track_uuid)
     TextView currentTrackUUIDView;
@@ -45,16 +46,17 @@ public class GoogleMapFragment extends BaseFragment<MapPresenter> implements OnM
         return R.layout.fragment_google_map;
     }
 
-
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initializeMap();
-        trackUI = ((TrackViewActivity) getActivity()).getTrackUI();
+
+        trackUI = ((TrackViewActivity) getActivity()).getTrackDTO();
         currentTrackUUIDView.setText(trackUI.getUuid());
     }
 
     public void initializeMap(){
+        canAddPoints = false;
         if (map == null){
             SupportMapFragment mapFragment = (SupportMapFragment)getChildFragmentManager()
                     .findFragmentById(R.id.map);
@@ -62,10 +64,24 @@ public class GoogleMapFragment extends BaseFragment<MapPresenter> implements OnM
         }
     }
 
+    public void pointReceived(PointDTO point) {
+        if (canAddPoints) {
+            map.clear();
+            LatLng latLng = new LatLng(point.getLat(), point.getLng());
+            boundsBuilder.include(latLng);
+            polylineOptions.add(latLng);
+            map.addPolyline(polylineOptions);
+            drawMePointer(latLng, point.getBearing());
+            animateCameraToUser(latLng);
+        }
+    }
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         map = googleMap;
         polylineOptions = new PolylineOptions().width(5).color(Color.BLUE);
+        boundsBuilder = new LatLngBounds.Builder();
+        canAddPoints = true;
         // безопасно потому что франмент создается после инициализации trackUI
         drawPolyline(trackUI.getPoints());
     }
@@ -74,12 +90,12 @@ public class GoogleMapFragment extends BaseFragment<MapPresenter> implements OnM
         if (pointDTOs.size() == 0){
             return;
         }
-        boundsBuilder = new LatLngBounds.Builder();
+
         map.clear();
         ArrayList<LatLng> latLngs = new ArrayList<>();
         LatLng latlng;
-        for (PointDTO pointDTO : pointDTOs) {
-            latlng = new LatLng(pointDTO.getLat(), pointDTO.getLng());
+        for (PointDTO point : pointDTOs) {
+            latlng = new LatLng(point.getLat(), point.getLng());
             latLngs.add(latlng);
             boundsBuilder.include(latlng);
         }
@@ -87,21 +103,36 @@ public class GoogleMapFragment extends BaseFragment<MapPresenter> implements OnM
         polylineOptions.addAll(latLngs);
         map.addPolyline(polylineOptions);
 
-//        if (!recording){
-//            drawStartStopMarkersAndAnim(latLngs);
-//        }
+
+        if (!trackUI.isRunning()){
+            drawStartStopMarkersAndAnim(latLngs);
+        } else {
+            animateCameraWholeTrack();
+        }
     }
 
-
     private void drawStartStopMarkersAndAnim(ArrayList<LatLng> latLngs){
-
         map.addMarker(new MarkerOptions().position(latLngs.get(0))
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
         map.addMarker(new MarkerOptions().position(latLngs.get(latLngs.size() - 1))
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ROSE)));
+        animateCameraWholeTrack();
+    }
+
+    private void animateCameraWholeTrack() {
         LatLngBounds tmpBounds = boundsBuilder.build();
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngBounds(tmpBounds, 50);
         map.animateCamera(cameraUpdate);
+    }
+
+    private void animateCameraToUser(LatLng latLng) {
+        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 50);
+        map.animateCamera(cameraUpdate);
+    }
+
+    private void drawMePointer(LatLng latLng, float bearing) {
+        map.addMarker(new MarkerOptions().position(latLng).rotation(bearing)
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA)));
     }
 
     public static GoogleMapFragment getInstance() {

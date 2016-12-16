@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Fixed4</string>
+    <string name="app_name">FixedRec4</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
@@ -26,6 +26,11 @@
     <string name="km_with_put">%1$.1f km</string>
     <string name="m_with_put">%.0f  m</string>
     <string name="recording_now">Recording...</string>
+
+
+    <string name="title_close_track">Close track</string>
+    <string name="title_continue">Continue</string>
+    <string name="hint_close_track">Enter track comment</string>
 
     <!--measures-->
     <string name="hour">%1$d  h</string>

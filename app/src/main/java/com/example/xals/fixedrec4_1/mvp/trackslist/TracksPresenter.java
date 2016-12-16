@@ -2,10 +2,9 @@ package com.example.xals.fixedrec4_1.mvp.trackslist;
 
 
 import android.os.Bundle;
-import android.util.Log;
 
-import com.example.xals.fixedrec4_1.business.dto.TrackDTO;
 import com.example.xals.fixedrec4_1.business.interactor.database.IDatabaseInteractor;
+import com.example.xals.fixedrec4_1.business.interactor.database.requery.RequeryInteractor;
 import com.example.xals.fixedrec4_1.business.interactor.viewbindings.IViewInteractor;
 import com.example.xals.fixedrec4_1.mvp.base.BasePresenter;
 
@@ -27,19 +26,10 @@ public class TracksPresenter extends BasePresenter<TracksFragment> {
     @Inject
     IViewInteractor viewInteractor;
 
-    String currentTrackUUID;
 
     @Override
     protected void onCreate(Bundle savedState) {
         super.onCreate(savedState);
-        rxBus.toObserverable()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(recievd -> {
-                    if(recievd instanceof TrackDTO) {
-                        Log.d("TracksPresenter", ((TrackDTO) recievd).getDateCreated().toString());
-                    }
-                });
 
         restartableFirst(GET_ALL_TRACKS,
                 () -> databaseInteractor.getAllTracks()
@@ -56,7 +46,7 @@ public class TracksPresenter extends BasePresenter<TracksFragment> {
                 this::onError);
 
         restartableFirst(GET_CURRENT_TRACK,
-                () -> databaseInteractor.getCurrentTrackForUI()
+                () -> databaseInteractor.getCurrentTrackNoPoints()
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread()),
                 TracksFragment::onClosedTrackLoadedUIUpdate,
@@ -76,6 +66,8 @@ public class TracksPresenter extends BasePresenter<TracksFragment> {
 
     public void createNewTrack() {
         start(CREATE_NEW_TRACK);
+        RequeryInteractor interactor = new RequeryInteractor();
+        interactor.createNewTrack();
     }
 
     public void getClosedTrackToUpdateUI() {
