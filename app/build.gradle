@@ -77,5 +77,4 @@ dependencies {
     compile 'io.requery:requery:1.0.2'
     compile 'io.requery:requery-android:1.0.2' // for android
     apt 'io.requery:requery-processor:1.0.2'
-
 }
