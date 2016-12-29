@@ -363,15 +363,6 @@
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\lectricas\AndroidStudioProjects\fixedrec4_1\app\build\intermediates\exploded-aar\com.github.VictorAlbertos.RxPermissionsResult\rx1\0.0.3\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="7211d895aba66bd6681c4f74f7eef66127e5f9dc">
-        <dex dex="C:\Users\lectricas\AndroidStudioProjects\fixedrec4_1\app\build\intermediates\pre-dexed\debug\com.github.VictorAlbertos.RxPermissionsResult-rx1-0.0.3_ac39aef078c33f984f3721f2676b0095dbed6308.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="C:\Users\lectricas\AndroidStudioProjects\fixedrec4_1\app\build\intermediates\exploded-aar\com.android.support\design\25.0.0\jars\classes.jar"
         jumboMode="false"
         optimize="true"

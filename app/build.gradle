@@ -77,8 +77,5 @@ dependencies {
     compile 'io.requery:requery:1.0.2'
     compile 'io.requery:requery-android:1.0.2' // for android
     apt 'io.requery:requery-processor:1.0.2'
-
-//    compile 'com.github.VictorAlbertos:RxPermissionsResult:rx1:0.0.4'
     compile 'com.android.support:preference-v7:25.0.0'
-    compile 'com.github.VictorAlbertos.RxPermissionsResult:rx1:0.0.3'
 }
