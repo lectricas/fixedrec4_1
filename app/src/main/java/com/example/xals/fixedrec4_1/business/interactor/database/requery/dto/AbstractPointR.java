@@ -4,9 +4,11 @@ import android.os.Parcelable;
 
 import java.util.Date;
 
+import io.requery.CascadeAction;
 import io.requery.Entity;
 import io.requery.Generated;
 import io.requery.Key;
+import io.requery.ManyToOne;
 import io.requery.Persistable;
 
 @Entity
@@ -25,6 +27,6 @@ public abstract class AbstractPointR implements Parcelable, Persistable {
     Float bearing;
     Long track_id;
 
-   // @ManyToOne(cascade = {CascadeAction.DELETE, CascadeAction.SAVE})
-   // AbstractTrackR track;
+    @ManyToOne(cascade = {CascadeAction.DELETE, CascadeAction.SAVE})
+    AbstractTrackR trackR;
 }

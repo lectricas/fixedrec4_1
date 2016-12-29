@@ -20,6 +20,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 
@@ -112,7 +113,7 @@ public class GoogleMapFragment extends BaseFragment<MapPresenter> implements OnM
     }
 
     private void drawStartStopMarkersAndAnim(ArrayList<LatLng> latLngs){
-        map.addMarker(new MarkerOptions().position(latLngs.get(0))
+        Marker marker = map.addMarker(new MarkerOptions().position(latLngs.get(0))
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
         map.addMarker(new MarkerOptions().position(latLngs.get(latLngs.size() - 1))
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ROSE)));

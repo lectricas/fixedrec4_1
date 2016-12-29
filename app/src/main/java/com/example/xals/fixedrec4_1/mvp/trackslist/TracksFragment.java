@@ -3,10 +3,13 @@ package com.example.xals.fixedrec4_1.mvp.trackslist;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Toast;
@@ -55,6 +58,11 @@ public class TracksFragment extends BaseFragment<TracksPresenter> implements Tra
     }
 
     @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
         getPresenter().checkTrackStateForView();
@@ -87,7 +95,16 @@ public class TracksFragment extends BaseFragment<TracksPresenter> implements Tra
                                 Snackbar.LENGTH_SHORT).show();
                     } else {
                         Snackbar.make(coordinatorLayout, "Go to settings to change the permission",
-                                Snackbar.LENGTH_SHORT).show();
+                                Snackbar.LENGTH_SHORT)
+                                .setAction("Settings", view -> {
+                                    Intent intent = new Intent();
+                                    intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                                    Uri uri = Uri.fromParts("package", getActivity().getPackageName(), null);
+                                    intent.setData(uri);
+                                    startActivity(intent);
+                                })
+                                .setActionTextColor(ContextCompat.getColor(getContext(), R.color.colorPrimary))
+                                .show();
                     }
                 });
     }
