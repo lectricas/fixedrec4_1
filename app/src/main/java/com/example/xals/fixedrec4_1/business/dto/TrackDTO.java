@@ -16,9 +16,6 @@ import lombok.experimental.Builder;
 
 @Getter
 @Setter
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
 @Table(name = TrackDTO.TABLE_NAME)
 public class TrackDTO extends Model {
     public static final String TABLE_NAME = "Track";
@@ -59,13 +56,9 @@ public class TrackDTO extends Model {
     @Column(name = COLUMN_NAME_STATUS)
     int status;
 
-    public static final String COLUMN_NAME_TRACK_OWNER = "track_owner";
+    public static final String COLUMN_NAME_TRACK_OWNER = "trackOwner";
     @Column(name = COLUMN_NAME_TRACK_OWNER)
-    String track_owner;
+    String trackOwner;
 
     List<PointDTO> points;
-
-    public static class TrackDTOBuilder {
-        String uuid = UUID.randomUUID().toString();
-    }
 }

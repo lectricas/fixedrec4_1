@@ -103,17 +103,14 @@ public class LocationService extends Service implements LocationListener, GpsSta
 
     @Override
     public void onLocationChanged(Location location) {
-
-        PointDTO pointDTO = PointDTO.builder()
-                .track_id(currentTrackDTO.getId())
-                .lat(location.getLatitude())
-                .lng(location.getLongitude())
-                .accuracy(location.getAccuracy())
-                .dateCreated(Convert.getCurrentDate())
-                .speed(location.getSpeed())
-                .bearing(location.getBearing())
-                .build();
-
+        PointDTO pointDTO = new PointDTO();
+        pointDTO.setTrackId(currentTrackDTO.getId());
+        pointDTO.setLat(location.getLatitude());
+        pointDTO.setLng(location.getLongitude());
+        pointDTO.setAccuracy(location.getAccuracy());
+        pointDTO.setDateCreated(Convert.getCurrentDate());
+        pointDTO.setSpeed(location.getSpeed());
+        pointDTO.setBearing(location.getBearing());
         rxBus.send(pointDTO);
 
         if (currentTrackDTO.isRunning()) {

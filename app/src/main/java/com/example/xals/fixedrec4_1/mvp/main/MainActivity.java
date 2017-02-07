@@ -61,20 +61,4 @@ public class MainActivity extends BaseActivity<MainPresenter>
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
-
-//    public boolean updateFabUi() {
-//        if (trackAdapter.getTracks().size() == 0) {
-//            fab.setVisibility(View.VISIBLE);
-//            return false;
-//        }
-//        for (TrackDTO track : trackAdapter.getTracks()) {
-//            if (track.isRunning()) {
-//                startNewTrackFab.setVisibility(View.INVISIBLE);
-//                return true;
-//            }
-//        }
-//        startNewTrackFab.setVisibility(View.VISIBLE);
-//        return false;
-//    }
 }

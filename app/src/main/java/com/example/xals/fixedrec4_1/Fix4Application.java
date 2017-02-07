@@ -21,8 +21,6 @@ public class Fix4Application extends Application {
     @Getter
     ServiceComponent serviceComponent;
 
-//    SingleEntityStore<Persistable> dataStore;
-
     @Override
     public void onCreate() {
         super.onCreate();
@@ -39,32 +37,5 @@ public class Fix4Application extends Application {
                 .build();
 
         Stetho.initializeWithDefaults(this);
-
-
-//        TrackR trackR = new TrackR();
-//        trackR.setDateCreated(Convert.getCurrentDate());
-//        trackR.setTrack_owner("user1");
-//        trackR.setIsRunning(true);
-//        PointR pointR = new PointR();
-//        pointR.setDateCreated(Convert.getCurrentDate());
-//        trackR.getPoints().add(pointR);
-//
-//
-//        DatabaseSource source = new DatabaseSource(this, Models.DEFAULT, 1);
-//        Configuration configuration = source.getConfiguration();
-//        EntityDataStore generalDataStore = new EntityDataStore<>(configuration);
-//        generalDataStore.insert(trackR);
-//
-//        Result<TrackR> result = generalDataStore.select(TrackR.class).get();
     }
-
-
-//    public SingleEntityStore<Persistable> getData() {
-//        if(dataStore == null) {
-//            DatabaseSource source = new DatabaseSource(this, Models.DEFAULT, "databaseRequery", 1);
-//            Configuration configuration = source.getConfiguration();
-//            dataStore = RxSupport.toReactiveStore(new EntityDataStore<Persistable>(configuration));
-//        }
-//        return dataStore;
-//    }
 }

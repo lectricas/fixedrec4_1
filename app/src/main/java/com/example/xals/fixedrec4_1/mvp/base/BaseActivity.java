@@ -91,6 +91,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends NucleusAppCo
                 });
         alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, getString(R.string.title_exit_from_app),
                 (dialog, which) -> {
+                    alertDialog.cancel();
                     finish();
                 });
         alertDialog.show();

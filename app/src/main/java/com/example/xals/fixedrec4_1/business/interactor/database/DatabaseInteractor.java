@@ -8,6 +8,7 @@ import com.example.xals.fixedrec4_1.util.AppPreferences;
 import com.example.xals.fixedrec4_1.util.Convert;
 
 import java.util.List;
+import java.util.UUID;
 
 import javax.inject.Inject;
 
@@ -42,11 +43,11 @@ public class DatabaseInteractor implements IDatabaseInteractor {
     //пока не создали новый, будет этот трэк
     @Override
     public Observable<TrackDTO> createNewTrack() {
-        TrackDTO dto = TrackDTO.builder()
-                .dateCreated(Convert.getCurrentDate())
-                .track_owner("user1")
-                .isRunning(true)
-                .build();
+        TrackDTO dto = new TrackDTO();
+        dto.setUuid(UUID.randomUUID().toString());
+        dto.setDateCreated(Convert.getCurrentDate());
+        dto.setTrackOwner("user1");
+        dto.setRunning(true);
 
         return ActiveAndroidHelper.saveTrack(dto)
                 .map(trackDTO -> {

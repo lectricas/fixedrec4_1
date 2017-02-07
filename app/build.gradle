@@ -7,7 +7,7 @@ repositories {
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.0"
+    buildToolsVersion "25.0.2"
     defaultConfig {
         applicationId "com.example.xals.fixedrec4_1"
         minSdkVersion 16
@@ -73,9 +73,5 @@ dependencies {
     compile 'com.tbruyelle.rxpermissions:rxpermissions:0.9.0@aar'
     compile 'com.jakewharton.rxbinding:rxbinding:1.0.0'
     compile 'com.jakewharton.rxbinding:rxbinding-appcompat-v7:1.0.0'
-
-    compile 'io.requery:requery:1.0.2'
-    compile 'io.requery:requery-android:1.0.2' // for android
-    apt 'io.requery:requery-processor:1.0.2'
     compile 'com.android.support:preference-v7:25.0.0'
 }

@@ -3,8 +3,8 @@ package com.example.xals.fixedrec4_1.mvp.trackslist;
 
 import android.os.Bundle;
 
+import com.example.xals.fixedrec4_1.business.interactor.database.DatabaseInteractor;
 import com.example.xals.fixedrec4_1.business.interactor.database.IDatabaseInteractor;
-import com.example.xals.fixedrec4_1.business.interactor.database.requery.RequeryInteractor;
 import com.example.xals.fixedrec4_1.business.interactor.viewbindings.IViewInteractor;
 import com.example.xals.fixedrec4_1.mvp.base.BasePresenter;
 
@@ -66,8 +66,6 @@ public class TracksPresenter extends BasePresenter<TracksFragment> {
 
     public void createNewTrack() {
         start(CREATE_NEW_TRACK);
-        RequeryInteractor interactor = new RequeryInteractor();
-        interactor.createNewTrack();
     }
 
     public void getClosedTrackToUpdateUI() {
