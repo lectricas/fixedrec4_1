@@ -2,7 +2,6 @@ package com.example.xals.fixedrec4_1.util;
 
 import android.content.Context;
 
-
 import com.example.xals.fixedrec4_1.R;
 
 import java.text.SimpleDateFormat;

@@ -1,7 +1,11 @@
 package com.example.xals.fixedrec4_1.mvp.trackslist.adapter;
 
 import android.content.Context;
+import android.support.v7.util.SortedList;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.util.SortedListAdapterCallback;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,89 +15,67 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.xals.fixedrec4_1.R;
-import com.example.xals.fixedrec4_1.business.dto.TrackDTO;
+import com.example.xals.fixedrec4_1.business.model.TrackModel;
+import com.example.xals.fixedrec4_1.repository.dto.TrackDTO;
 import com.example.xals.fixedrec4_1.util.Convert;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class TrackAdapter extends RecyclerView.Adapter<TrackAdapter.ViewHolder>  {
+public class TrackAdapter extends RecyclerView.Adapter<TracksViewHolder>  {
 
     private Context context;
-    private List<TrackDTO> tracks;
     private OnItemClickListener listener;
     private LayoutInflater inflater;
+
+    private SortedList<TrackModel> tracks;
 
     public TrackAdapter(Context context, OnItemClickListener listener) {
         this.context = context;
         this.listener = listener;
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        this.tracks = new ArrayList<>();
-    }
+        tracks = new SortedList<TrackModel>(TrackModel.class, new SortedListAdapterCallback<TrackModel>(this) {
+            @Override
+            public int compare(TrackModel o1, TrackModel o2) {
+                return o1.getDateCreated().compareTo(o2.getDateCreated());
+            }
 
-    public void add(TrackDTO track) {
-        if (!tracks.contains(track)) {
-            tracks.add(track);
-        }
-        notifyDataSetChanged();
-    }
+            @Override
+            public boolean areContentsTheSame(TrackModel oldItem, TrackModel newItem) {
+                oldItem.getDateUpdated();
+                newItem.getDateUpdated();
+                if (oldItem.getDateUpdated() != null && newItem.getDateUpdated() != null) {
+                    if (oldItem.getDateUpdated().compareTo(newItem.getDateUpdated()) == 0) {
+                        return true;
+                    }
+                }
 
-    public void update(TrackDTO track) {
-        tracks.remove(track);
-        tracks.add(track);
-        notifyDataSetChanged();
-    }
+                return oldItem.isRunning() == newItem.isRunning();
+            }
 
-    public void setTracks(List<TrackDTO> tracks) {
-        this.tracks.clear();
-        this.tracks = tracks;
-        notifyDataSetChanged();
+            @Override
+            public boolean areItemsTheSame(TrackModel item1, TrackModel item2) {
+                boolean same = TextUtils.equals(item1.getUuid(), item2.getUuid());
+                Log.d("TrackAdapter", "same:" + same);
+                return same;
+            }
+        });
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public TracksViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = inflater.inflate(R.layout.item_track_layout, parent, false);
-        return new ViewHolder(v);
+        return new TracksViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder vh, int position) {
-        TrackDTO trackDTO = tracks.get(position);
-
-        if (trackDTO.isRunning()){
-            vh.name.setText(Convert.formatDateAndTime(trackDTO.getDateCreated()));
-            vh.thumbnail.setImageResource(R.drawable.ic_action_record);
-            vh.distanceTimeTv.setText(context.getString(R.string.recording_now));
-            blink(vh.thumbnail);
-        }else {
-            vh.name.setText(Convert.formatDateAndTime(trackDTO.getDateClosed()));
-            vh.thumbnail.setImageResource(R.drawable.ic_satellite);
-            vh.thumbnail.setAnimation(null);
-            String distance = Convert.getKmIfNeeded(trackDTO.getDistance(), context);
-            String totalTime = Convert.getDateDiff(trackDTO.getDateCreated(),
-                    trackDTO.getDateClosed(), context);
-            vh.distanceTimeTv.setText(distance + "(" + totalTime + ")");
-//            switch (trackDTO.getType()) {
-//                case StrStore.TYPE_CAR:
-//                    vh.thumbnail.setImageResource(R.drawable.ic_car);
-//                    break;
-//                case StrStore.TYPE_BIKE:
-//                    vh.thumbnail.setImageResource(R.drawable.ic_bike);
-//                    break;
-//                case StrStore.TYPE_FOOT:
-//                    vh.thumbnail.setImageResource(R.drawable.ic_walk);
-//                    break;
-//                default:
-//                    vh.thumbnail.setImageResource(R.drawable.ic_navigation);
-//                    break;
-//            }
-        }
-
-//        vh.dateEnd.setText(makeAgo(trackDTO.getDateCreated()));
+    public void onBindViewHolder(TracksViewHolder vh, int position) {
+        TrackModel model = tracks.get(position);
+        vh.bind(model, listener);
     }
 
     @Override
@@ -101,32 +83,32 @@ public class TrackAdapter extends RecyclerView.Adapter<TrackAdapter.ViewHolder> 
         return tracks.size();
     }
 
-
-    public void blink(ImageView image){
-        Animation animation1 = AnimationUtils.loadAnimation(context, R.anim.blink_recording);
-        image.startAnimation(animation1);
+    public TrackModel get(int position) {
+        return tracks.get(position);
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        @Bind(R.id.name) TextView name;
-        @Bind(R.id.comment) TextView dateEnd;
-        @Bind(R.id.thumbnail) ImageView thumbnail;
-        @Bind(R.id.distance_and_time) TextView distanceTimeTv;
-
-        public ViewHolder(View itemView) {
-            super(itemView);
-            itemView.setOnClickListener(this);
-            ButterKnife.bind(this, itemView);
-        }
-
-        @Override
-        public void onClick(View view) {
-            listener.onItemClicked(tracks.get(getLayoutPosition()));
-        }
+    public int add(TrackModel item) {
+        return tracks.add(item);
     }
+
+    public int indexOf(TrackModel item) {
+        return tracks.indexOf(item);
+    }
+
+    public void updateItem( TrackModel item) {
+        tracks.updateItemAt(indexOf(item), item);
+    }
+
+    public void addAll(List<TrackModel> items) {
+        tracks.beginBatchedUpdates();
+        for (TrackModel item : items) {
+            tracks.add(item);
+        }
+        tracks.endBatchedUpdates();
+    }
+
 
     public interface OnItemClickListener {
-        void onItemClicked(TrackDTO trackDTO);
+        void onItemClicked(TrackModel model);
     }
-
 }

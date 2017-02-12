@@ -7,11 +7,11 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.xals.fixedrec4_1.R;
-import com.example.xals.fixedrec4_1.business.dto.PointDTO;
-import com.example.xals.fixedrec4_1.business.dto.TrackDTO;
+import com.example.xals.fixedrec4_1.repository.dto.PointDTO;
+import com.example.xals.fixedrec4_1.repository.dto.TrackDTO;
 import com.example.xals.fixedrec4_1.mvp.base.BaseFragment;
-import com.example.xals.fixedrec4_1.mvp.map.TrackViewActivity;
-import com.example.xals.fixedrec4_1.mvp.map.fragment.presenter.MapPresenter;
+import com.example.xals.fixedrec4_1.mvp.map.fragment.presenter.MapViewState;
+import com.example.xals.fixedrec4_1.mvp.map.activity.TrackDisplayActivity;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -27,11 +27,10 @@ import com.google.android.gms.maps.model.PolylineOptions;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
-import nucleus.factory.RequiresPresenter;
+import butterknife.BindView;
 
-@RequiresPresenter(MapPresenter.class)
-public class GoogleMapFragment extends BaseFragment<MapPresenter> implements OnMapReadyCallback {
+
+public class GoogleMapFragment extends BaseFragment implements OnMapReadyCallback, MapViewState {
 
     private GoogleMap map;
     private PolylineOptions polylineOptions;
@@ -39,7 +38,7 @@ public class GoogleMapFragment extends BaseFragment<MapPresenter> implements OnM
     private TrackDTO trackUI;
     private boolean canAddPoints;
 
-    @Bind(R.id.current_track_uuid)
+    @BindView(R.id.current_track_uuid)
     TextView currentTrackUUIDView;
 
     @Override
@@ -52,7 +51,7 @@ public class GoogleMapFragment extends BaseFragment<MapPresenter> implements OnM
         super.onViewCreated(view, savedInstanceState);
         initializeMap();
 
-        trackUI = ((TrackViewActivity) getActivity()).getTrackDTO();
+        trackUI = ((TrackDisplayActivity) getActivity()).getTrackDTO();
         currentTrackUUIDView.setText(trackUI.getUuid());
     }
 
@@ -65,6 +64,7 @@ public class GoogleMapFragment extends BaseFragment<MapPresenter> implements OnM
         }
     }
 
+    @Override
     public void pointReceived(PointDTO point) {
         if (canAddPoints) {
             map.clear();

@@ -8,8 +8,8 @@
             android:title="@string/track_recording_menu" />
 
         <item
-            android:id="@+id/help"
+            android:id="@+id/logout"
             android:icon="@mipmap/ic_launcher"
-            android:title="@string/help_menu" />
+            android:title="@string/menu_logout" />
     </group>
 </menu>

@@ -2,8 +2,8 @@ package com.example.xals.fixedrec4_1.repository.database;
 
 
 import com.activeandroid.sebbia.query.Select;
-import com.example.xals.fixedrec4_1.business.dto.PointDTO;
-import com.example.xals.fixedrec4_1.business.dto.TrackDTO;
+import com.example.xals.fixedrec4_1.repository.dto.PointDTO;
+import com.example.xals.fixedrec4_1.repository.dto.TrackDTO;
 
 import java.util.List;
 

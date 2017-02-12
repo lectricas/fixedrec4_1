@@ -1,5 +1,7 @@
 package com.example.xals.fixedrec4_1.mvp.main;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -9,25 +11,31 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 
+import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.example.xals.fixedrec4_1.R;
-import com.example.xals.fixedrec4_1.business.dto.Fix4SuccessResultModel;
+import com.example.xals.fixedrec4_1.business.model.Fix4SuccessResultModel;
+import com.example.xals.fixedrec4_1.mvp.auth.LoginActivity;
 import com.example.xals.fixedrec4_1.mvp.base.BaseActivity;
+import com.example.xals.fixedrec4_1.mvp.main.presenter.MainPresenter;
+import com.example.xals.fixedrec4_1.mvp.main.presenter.MainViewState;
 import com.example.xals.fixedrec4_1.mvp.trackslist.TracksFragment;
 
-import butterknife.Bind;
-import nucleus.factory.RequiresPresenter;
+import butterknife.BindView;
 
-@RequiresPresenter(MainPresenter.class)
-public class MainActivity extends BaseActivity<MainPresenter>
-        implements NavigationView.OnNavigationItemSelectedListener {
 
-    @Bind(R.id.toolbar)
+public class MainActivity extends BaseActivity
+        implements NavigationView.OnNavigationItemSelectedListener, MainViewState {
+
+    @InjectPresenter
+    MainPresenter presenter;
+
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
 
-    @Bind(R.id.drawer_layout)
+    @BindView(R.id.drawer_layout)
     DrawerLayout drawer;
 
-    @Bind(R.id.nav_view)
+    @BindView(R.id.nav_view)
     NavigationView navigationView;
 
     @Override
@@ -52,13 +60,21 @@ public class MainActivity extends BaseActivity<MainPresenter>
 
         int id = item.getItemId();
         if (id == R.id.schedule) {
-//            switchFragment(new SelectRouteFragment(), false);
-        } else if (id == R.id.help) {
-//            switchFragment(new InfoFragment(), false);
+
+        } else if (id == R.id.logout) {
+            presenter.logout();
+            LoginActivity.startActivity(this);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public static void startActivity(Context context) {
+        Intent intent = new Intent(context, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        context.startActivity(intent);
     }
 }

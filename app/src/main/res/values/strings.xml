@@ -45,8 +45,26 @@
     <string name="permissions_not_granted">Permissions were not granted.</string>
     <string name="canceled_continue_recording">Canceled, continue recording.</string>
     <string name="no_need_to_refresh">No need to refresh</string>
+    <string name="change_permission_in_settings">Go to settings to change the permission</string>
     
     <!--menu-->
-    <string name="help_menu">меню помощи</string>
+    <string name="menu_logout">Logout</string>
     <string name="track_recording_menu">trackDTO recording</string>
+
+    <!--auth-->
+    <string name="password_hint">Password</string>
+    <string name="email_hint">Email</string>
+    <string name="username_hint">Username</string>
+    <string name="sign_up_button_label">Sign Up</string>
+    <string name="signup_error_message">Please make sure you enter an email address and password!</string>
+    <string name="signup_error_title">Error!</string>
+    <string name="signup_success">Account successfully created! You can now Login.</string>
+    <string name="login_error_message">Please make sure you enter an email address and password!</string>
+    <string name="login_error_title">Error!</string>
+    <string name="login_button_label">Login</string>
+    <string name="sign_up_text">Sign Up!</string>
+    <string name="title_activity_login">Sign in</string>
+    <string name="action_logout">Logout</string>
+
+
 </resources>

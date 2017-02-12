@@ -4,29 +4,26 @@ package com.example.xals.fixedrec4_1.mvp.map.fragment;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.example.xals.fixedrec4_1.R;
-import com.example.xals.fixedrec4_1.error.ErrorCallback;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import lombok.Setter;
+import butterknife.Unbinder;
 
 public class CloseTrackDialog extends DialogFragment {
 
     public static final String ERROR_FRAGMENT = "error_fragment";
 
-    @Bind(R.id.comment)
-    EditText message;
+    Unbinder unbinder;
 
-    @Setter
-    ErrorCallback callback;
+    @BindView(R.id.comment)
+    EditText message;
 
     @Override
     public void onStart() {
@@ -42,7 +39,7 @@ public class CloseTrackDialog extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.error_fragment_dialog, container, false);
         getDialog().setTitle("Simple Dialog");
-        ButterKnife.bind(this, rootView);
+        unbinder = ButterKnife.bind(this, rootView);
 //        message.setText(error.getLocalizedMessage(getContext()));
         return rootView;
     }
@@ -51,7 +48,7 @@ public class CloseTrackDialog extends DialogFragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        ButterKnife.unbind(this);
+        unbinder.unbind();
     }
 
     @OnClick(R.id.positive)
@@ -66,9 +63,9 @@ public class CloseTrackDialog extends DialogFragment {
 //        callback.negative(error);
     }
 
-    public static void show(FragmentManager manager, ErrorCallback callback) {
-        CloseTrackDialog dialog = new CloseTrackDialog();
-        dialog.setCallback(callback);
-        dialog.show(manager, CloseTrackDialog.ERROR_FRAGMENT);
-    }
+//    public static void show(FragmentManager manager, ErrorCallback callback) {
+//        CloseTrackDialog dialog = new CloseTrackDialog();
+//        dialog.setCallback(callback);
+//        dialog.show(manager, CloseTrackDialog.ERROR_FRAGMENT);
+//    }
 }

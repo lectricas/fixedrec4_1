@@ -17,10 +17,10 @@ import android.util.Log;
 
 import com.example.xals.fixedrec4_1.Fix4Application;
 import com.example.xals.fixedrec4_1.R;
-import com.example.xals.fixedrec4_1.business.dto.PointDTO;
-import com.example.xals.fixedrec4_1.business.dto.TrackDTO;
-import com.example.xals.fixedrec4_1.business.interactor.database.IDatabaseInteractor;
-import com.example.xals.fixedrec4_1.mvp.map.TrackViewActivity;
+import com.example.xals.fixedrec4_1.business.interactor.database.DatabaseInteractor;
+import com.example.xals.fixedrec4_1.repository.dto.PointDTO;
+import com.example.xals.fixedrec4_1.repository.dto.TrackDTO;
+import com.example.xals.fixedrec4_1.mvp.map.activity.TrackDisplayActivity;
 import com.example.xals.fixedrec4_1.util.Convert;
 import com.example.xals.fixedrec4_1.util.RxBus;
 
@@ -37,7 +37,7 @@ public class LocationService extends Service implements LocationListener, GpsSta
     RxBus rxBus;
 
     @Inject
-    IDatabaseInteractor databaseInteractor;
+    DatabaseInteractor databaseInteractor;
 
     private final IBinder mBinder = new MyBinder();
 
@@ -52,7 +52,7 @@ public class LocationService extends Service implements LocationListener, GpsSta
     @Override
     public void onCreate() {
         super.onCreate();
-        ((Fix4Application) getApplication()).getServiceComponent().inject(this);
+        Fix4Application.getApplicationComponent().inject(this);
         databaseInteractor.getCurrentTrackNoPoints().subscribe(trackDTO -> {
             currentTrackDTO = trackDTO;
             initializeNotificationIntent(trackDTO);
@@ -62,7 +62,7 @@ public class LocationService extends Service implements LocationListener, GpsSta
     }
 
     private void initializeNotificationIntent(TrackDTO currentTrackDTO) {
-        Intent notificationIntent = TrackViewActivity.getIntentInstance(this,
+        Intent notificationIntent = TrackDisplayActivity.intent(this,
                 true, currentTrackDTO.getUuid());
 
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0,

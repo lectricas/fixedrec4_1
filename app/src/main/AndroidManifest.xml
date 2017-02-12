@@ -16,15 +16,18 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.example.xals.fixedrec4_1.mvp.main.MainActivity">
+        <activity android:name="com.example.xals.fixedrec4_1.mvp.main.MainActivity"/>
+        <activity android:name=".mvp.map.activity.TrackDisplayActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".mvp.auth.LoginActivity"/>
+        <activity android:name=".mvp.auth.SignUpActivity"/>
+        <activity android:name=".mvp.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".mvp.map.TrackViewActivity"
-            android:screenOrientation="portrait"/>
 
         <service android:name=".service.LocationService" />
         <meta-data
@@ -37,7 +40,7 @@
         <meta-data
             android:name="AA_MODELS"
             android:value="
-            com.example.xals.fixedrec4_1.business.dto.PointDTO,
-            com.example.xals.fixedrec4_1.business.dto.TrackDTO" />
+            com.example.xals.fixedrec4_1.repository.dto.PointDTO,
+            com.example.xals.fixedrec4_1.repository.dto.TrackDTO" />
     </application>
 </manifest>

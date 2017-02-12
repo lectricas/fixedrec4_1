@@ -1,6 +1,5 @@
 package com.example.xals.fixedrec4_1.mvp.trackslist;
 
-import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
@@ -14,31 +13,36 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Toast;
 
+import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.example.xals.fixedrec4_1.R;
-import com.example.xals.fixedrec4_1.business.dto.TrackDTO;
+import com.example.xals.fixedrec4_1.business.model.TrackModel;
+import com.example.xals.fixedrec4_1.mvp.map.activity.TrackDisplayActivity;
+import com.example.xals.fixedrec4_1.mvp.trackslist.adapter.EndlessRecyclerViewScrollListener;
+import com.example.xals.fixedrec4_1.mvp.trackslist.presenter.TracksPresenter;
+import com.example.xals.fixedrec4_1.mvp.trackslist.presenter.TracksViewState;
 import com.example.xals.fixedrec4_1.mvp.base.BaseFragment;
-import com.example.xals.fixedrec4_1.mvp.map.TrackViewActivity;
 import com.example.xals.fixedrec4_1.mvp.trackslist.adapter.LinearManagerWithScroll;
 import com.example.xals.fixedrec4_1.mvp.trackslist.adapter.TrackAdapter;
 import com.example.xals.fixedrec4_1.util.Convert;
-import com.tbruyelle.rxpermissions.RxPermissions;
 
 import java.util.List;
 
-import butterknife.Bind;
+
+import butterknife.BindView;
 import butterknife.OnClick;
-import nucleus.factory.RequiresPresenter;
 
-@RequiresPresenter(TracksPresenter.class)
-public class TracksFragment extends BaseFragment<TracksPresenter> implements TrackAdapter.OnItemClickListener {
+public class TracksFragment extends BaseFragment implements TracksViewState {
 
-    @Bind(R.id.tracks_list)
+    @InjectPresenter
+    TracksPresenter presenter;
+
+    @BindView(R.id.tracks_list)
     RecyclerView tracksRv;
 
-    @Bind(R.id.fab)
+    @BindView(R.id.fab)
     FloatingActionButton fab;
 
-    @Bind(R.id.coordinator)
+    @BindView(R.id.coordinator)
     CoordinatorLayout coordinatorLayout;
 
     TrackAdapter trackAdapter;
@@ -51,10 +55,20 @@ public class TracksFragment extends BaseFragment<TracksPresenter> implements Tra
         manager = new LinearManagerWithScroll(getActivity());
         manager.setReverseLayout(true);
         manager.setStackFromEnd(true);
-        trackAdapter = new TrackAdapter(getContext(), this);
+        trackAdapter = new TrackAdapter(getContext(), model ->
+                startActivityForResult(TrackDisplayActivity.intent(getContext(),
+                        false, model.getUuid()), Convert.REQUEST_TRACK_CLOSE));
+        // TODO: 12.02.17 SKIP, TAKE serverSide
+//        tracksRv.addOnScrollListener(new EndlessRecyclerViewScrollListener(manager) {
+//            @Override
+//            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
+//                presenter.loadTracksFromServer();
+//            }
+//        });
         tracksRv.setLayoutManager(manager);
         tracksRv.setAdapter(trackAdapter);
-        getPresenter().getAllTracks();
+        presenter.getAllTracksFromDb();
+        presenter.loadTracksFromServer();
     }
 
     @Override
@@ -65,11 +79,12 @@ public class TracksFragment extends BaseFragment<TracksPresenter> implements Tra
     @Override
     public void onResume() {
         super.onResume();
-        getPresenter().checkTrackStateForView();
+        presenter.checkTrackStateForView();
     }
 
-    public void onGotTracks(List<TrackDTO> tracks) {
-        trackAdapter.setTracks(tracks);
+    @Override
+    public void onGotTracks(List<TrackModel> tracks) {
+        trackAdapter.addAll(tracks);
     }
 
     @Override
@@ -79,45 +94,34 @@ public class TracksFragment extends BaseFragment<TracksPresenter> implements Tra
 
     @OnClick(R.id.fab)
     public void onClick() {
-        requestPermissionReactive();
-    }
-
-    private void requestPermissionReactive() {
-
-        RxPermissions rxPermissions = new RxPermissions(getActivity());
-        rxPermissions
-                .requestEach(Manifest.permission.ACCESS_FINE_LOCATION)
-                .subscribe(permission -> {
-                    if (permission.granted) {
-                        getPresenter().createNewTrack();
-                    } else if (permission.shouldShowRequestPermissionRationale) {
-                        Snackbar.make(coordinatorLayout, R.string.permissions_not_granted,
-                                Snackbar.LENGTH_SHORT).show();
-                    } else {
-                        Snackbar.make(coordinatorLayout, "Go to settings to change the permission",
-                                Snackbar.LENGTH_SHORT)
-                                .setAction("Settings", view -> {
-                                    Intent intent = new Intent();
-                                    intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-                                    Uri uri = Uri.fromParts("package", getActivity().getPackageName(), null);
-                                    intent.setData(uri);
-                                    startActivity(intent);
-                                })
-                                .setActionTextColor(ContextCompat.getColor(getContext(), R.color.colorPrimary))
-                                .show();
-                    }
-                });
-    }
-
-    //this callback determinates if track is running and if fab is visible
-    public void showFab(boolean showFab) {
-        fab.setVisibility(showFab? View.VISIBLE: View.GONE);
+        presenter.requestPermissionAndStart(getActivity());
     }
 
     @Override
-    public void onItemClicked(TrackDTO trackDTO) {
-        startActivityForResult(TrackViewActivity.getIntentInstance(getContext(),
-                false, trackDTO.getUuid()), Convert.REQUEST_TRACK_CLOSE);
+    public void permissionNotGranted() {
+        Snackbar.make(coordinatorLayout, R.string.permissions_not_granted,
+                Snackbar.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void notGrantedChangeInSettings() {
+        Snackbar.make(coordinatorLayout, R.string.change_permission_in_settings,
+                Snackbar.LENGTH_SHORT)
+                .setAction("Settings", view -> {
+                    Intent intent = new Intent();
+                    intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                    Uri uri = Uri.fromParts("package", getActivity().getPackageName(), null);
+                    intent.setData(uri);
+                    startActivity(intent);
+                })
+                .setActionTextColor(ContextCompat.getColor(getContext(), R.color.colorPrimary))
+                .show();
+    }
+
+    //this callback determinates if track is running and if fab is visible
+    @Override
+    public void showFab(Boolean showFab) {
+        fab.setVisibility(showFab? View.VISIBLE: View.GONE);
     }
 
     @Override
@@ -127,7 +131,7 @@ public class TracksFragment extends BaseFragment<TracksPresenter> implements Tra
             if (resultCode == Activity.RESULT_OK) {
                 Toast.makeText(getContext(), "TRACK CLOSED",
                         Toast.LENGTH_SHORT).show();
-                getPresenter().getClosedTrackToUpdateUI();
+                presenter.getClosedTrackToUpdateUI();
 
             }
             if (resultCode == Activity.RESULT_CANCELED) {
@@ -137,14 +141,16 @@ public class TracksFragment extends BaseFragment<TracksPresenter> implements Tra
         }
     }
 
-    public void onClosedTrackLoadedUIUpdate(TrackDTO closedTrack) {
-        trackAdapter.update(closedTrack);
+    @Override
+    public void onClosedTrackLoadedUIUpdate(TrackModel closedTrack) {
+        trackAdapter.add(closedTrack);
     }
 
-    public void onNewTrackSaved(TrackDTO track) {
+    @Override
+    public void onNewTrackSaved(TrackModel track) {
         trackAdapter.add(track);
         tracksRv.scrollToPosition(trackAdapter.getItemCount() - 1);
-        startActivityForResult(TrackViewActivity.getIntentInstance(getContext(),
+        startActivityForResult(TrackDisplayActivity.intent(getContext(),
                 true, track.getUuid()), Convert.REQUEST_TRACK_CLOSE);
     }
 }

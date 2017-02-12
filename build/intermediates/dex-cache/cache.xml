@@ -3,30 +3,21 @@
 
     <item
         is-multidex="true"
-        jar="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/exploded-aar/com.android.support/design/25.0.0/jars/classes.jar"
+        jar="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.1.1/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="26384be22ddc74cfe197ebda9edbc7d1fd8bd537">
-        <dex dex="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-design-25.0.0_5a10af82b9737c54cdd3a2ff03c9f0084bfe0d7a/classes.dex" />
+        sha1="7bde4c34162092e0a77e7f12dc85ed77c484cf5c">
+        <dex dex="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-media-compat-25.1.1_6bc3cc230b2cb1b37f1ab36e8fc61fc4bf14451f/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/25.0.0/jars/classes.jar"
+        jar="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/exploded-aar/com.android.support/support-v4/25.1.1/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="5e497d60f0cb6ce87c458ac5420a46d0fed49bd0">
-        <dex dex="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-25.0.0_620185a6b3537d405faba2711344e1dd8ef0c4fa/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/exploded-aar/com.android.support/transition/25.0.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="0c6d948e6cb9ea6f535d175fb61ba2930719c0e9">
-        <dex dex="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-transition-25.0.0_9b235dc4ee2acc04a00f1cf70436608189dfddfc/classes.dex" />
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-25.1.1_4a7dd6f0bc9c2e395d3ee6695192976208f0e600/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -48,30 +39,12 @@
     </item>
     <item
         is-multidex="true"
-        jar="/home/lectricas/.gradle/caches/modules-2/files-2.1/com.jakewharton/butterknife/7.0.1/d5d13ea991eab0252e3710e5df3d6a9d4b21d461/butterknife-7.0.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="d5d13ea991eab0252e3710e5df3d6a9d4b21d461">
-        <dex dex="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/transforms/dex/debug/folders/1000/10/butterknife-7.0.1_8f78873ff37550c2f7929c8a2e3a5e7f5593ae16/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="/home/lectricas/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/2.0.1/516c03b21d50a644d538de0f0369c620989cd8f0/jsr305-2.0.1.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="516c03b21d50a644d538de0f0369c620989cd8f0">
         <dex dex="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/transforms/dex/debug/folders/1000/10/jsr305-2.0.1_79140ff42aca2bcb06df65b5468742b8296dff94/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.0.1/jars/libs/internal_impl-25.0.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="3af8cc51ef7088e56f132780da8c0bd858b6a6ad">
-        <dex dex="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-25.0.1_f15114938886e40cf3f8af4935a71f39633ecfc0/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -84,12 +57,12 @@
     </item>
     <item
         is-multidex="true"
-        jar="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.0.1/jars/classes.jar"
+        jar="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.1.1/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="26c6eef571592c91f29e56fda0bac73321de0c92">
-        <dex dex="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-fragment-25.0.1_d1b2e23a7d2ac5672ac1047dd6efca1e35f39f3c/classes.dex" />
+        sha1="3e04ac8ca644ea7baddf6fdcf72e15c79e9df94a">
+        <dex dex="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-ui-25.1.1_a00134f29487a929299c668b6c129bebdd75a015/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -102,6 +75,15 @@
     </item>
     <item
         is-multidex="true"
+        jar="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/exploded-aar/com.jakewharton/butterknife/8.4.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="a07818a1ecabdb149998823429cce555af4b9cba">
+        <dex dex="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.jakewharton-butterknife-8.4.0_ff03f37698c2c9585e66cb28e05944ae70c6bafb/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/home/lectricas/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.9.0/f824591a0016efbaeddb8300bee54832a1398cfa/okio-1.9.0.jar"
         jumboMode="true"
         optimize="true"
@@ -111,12 +93,12 @@
     </item>
     <item
         is-multidex="true"
-        jar="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/25.0.1/jars/classes.jar"
+        jar="/home/lectricas/.gradle/caches/modules-2/files-2.1/com.arello-mobile/moxy-app-compat/1.4.5/b35027e653f47b4ec72b26882eac38650a40b7e9/moxy-app-compat-1.4.5.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="b24e1c688744078e1fa833ffadf696794761bbe5">
-        <dex dex="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-25.0.1_f3d3fc4e04f2e2f709a38c3e723bc44be58592c6/classes.dex" />
+        sha1="b35027e653f47b4ec72b26882eac38650a40b7e9">
+        <dex dex="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/transforms/dex/debug/folders/1000/10/moxy-app-compat-1.4.5_a8344d328182a25ad5685b42a48929bf7fd56a0b/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -124,7 +106,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="1e8a8e3f2266edb9dc3e8c1282d447278eb0b86f">
+        sha1="805ca8d18fa213e6976be14588c3e45ec7745055">
         <dex dex="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_09463e747acab5b0811acacb4218cfc4aa73f7cd/classes.dex" />
     </item>
     <item
@@ -165,15 +147,6 @@
     </item>
     <item
         is-multidex="true"
-        jar="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.0.1/jars/libs/internal_impl-25.0.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="f83b00041ecfba705603fec40363416c7de69719">
-        <dex dex="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-25.0.1_1ef2e816ad4b8dfb4af37b8a2db47f42cf171424/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/9.4.0/jars/classes.jar"
         jumboMode="true"
         optimize="true"
@@ -183,30 +156,30 @@
     </item>
     <item
         is-multidex="true"
-        jar="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/25.0.1/jars/libs/internal_impl-25.0.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="c5b7145fb34779b6639147b8f2f8dd77c0db771b">
-        <dex dex="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-25.0.1_b2ed42db81b2d6fdaadd239391aa11cc8bff7dbf/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="e97823a5423b3e973a7141e9fffca41f87f3bcb9">
+        sha1="dea0e885b3490161a091656e0b38eab6cfab2fee">
         <dex dex="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_633e7b9d80431aed3c69eaef205edfb68cb58f58/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.0.1/jars/classes.jar"
+        jar="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.1.1/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="6a1479afe9f1b3645e1cd9a87318976893472818">
-        <dex dex="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-media-compat-25.0.1_dc0e58928df890feac8e0a211820f92515cceb13/classes.dex" />
+        sha1="02741d05d4b697fba5e279e9881aaa1da0ca7c7f">
+        <dex dex="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-compat-25.1.1_3bbe633aa7fde6ea42966d83337915ffac5abedb/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/lectricas/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/25.1.1/support-annotations-25.1.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b59b6ee8d6ecc03e672d253800430343493a6ed8">
+        <dex dex="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-25.1.1_2d8a3021fa36d617fa015b5a9ce25990deb8147e/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -219,12 +192,21 @@
     </item>
     <item
         is-multidex="true"
-        jar="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.0.1/jars/classes.jar"
+        jar="/home/lectricas/.gradle/caches/modules-2/files-2.1/com.jakewharton/butterknife-annotations/8.4.0/ea392375cf9ff59234a82e7928a204215ccc98cd/butterknife-annotations-8.4.0.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="f7ac4b327fdb9e2ee386f5adc46164927658de4b">
-        <dex dex="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-25.0.1_fe45cfd4153772ed26cf3066ce7a5403ffaa82e0/classes.dex" />
+        sha1="ea392375cf9ff59234a82e7928a204215ccc98cd">
+        <dex dex="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/transforms/dex/debug/folders/1000/10/butterknife-annotations-8.4.0_144796c72bf1137a5d0fdff913ce782d99401322/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/exploded-aar/com.android.support/transition/25.1.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="15b049fedbd8e3926bf99d9e45dfc9b2a1043bb9">
+        <dex dex="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-transition-25.1.1_af5f5bfbc9cce4c074b92f7310d0374e2b8ee5e4/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -237,21 +219,12 @@
     </item>
     <item
         is-multidex="true"
-        jar="/home/lectricas/.gradle/caches/modules-2/files-2.1/info.android15.nucleus/nucleus/2.0.5/8fe0a74cbd2fdf6e554298a8c0943a8bb4cfbbb9/nucleus-2.0.5.jar"
+        jar="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/25.1.1/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="8fe0a74cbd2fdf6e554298a8c0943a8bb4cfbbb9">
-        <dex dex="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/transforms/dex/debug/folders/1000/10/nucleus-2.0.5_8ae3d0be3039db02193de467758190a318e7f01e/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/25.0.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="772bed2d992b67b9d0327f766cc95cd63031dcd3">
-        <dex dex="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-25.0.1_0f7436e66ee480147b241b80cfb2cd04c32b25f9/classes.dex" />
+        sha1="0fb891e8f0cfba0513043a7bb357513d229ca2cd">
+        <dex dex="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-utils-25.1.1_893caed76a16833d8ebff9cd03c56c5a34389a1b/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -264,30 +237,12 @@
     </item>
     <item
         is-multidex="true"
-        jar="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/exploded-aar/com.android.support/support-v4/25.0.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-25.0.1_91baae452196d64785f8bb0ba8a2556db506f5a4/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/exploded-aar/com.jakewharton.rxbinding/rxbinding/1.0.0/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="2181c00a0d0a595b6c0679f1411cc91af6b042bb">
         <dex dex="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.jakewharton.rxbinding-rxbinding-1.0.0_0d1bb62591553680b4e45e972bf9b1e8e012febe/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/exploded-aar/info.android15.nucleus/nucleus-support-v7/2.0.5/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="33915803a50b40117099d9a9225511dc408cba4a">
-        <dex dex="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/transforms/dex/debug/folders/1000/10/info.android15.nucleus-nucleus-support-v7-2.0.5_ac8313011db94e5130ef6f709fb8a534b2bb5c84/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -300,21 +255,21 @@
     </item>
     <item
         is-multidex="true"
-        jar="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.0.1/jars/classes.jar"
+        jar="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/exploded-aar/com.android.support/preference-v7/25.1.1/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="bc7e99e8d0fc279a05aa91378530f467ad62d443">
-        <dex dex="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-ui-25.0.1_2df5ddb6fe8e97786a03a8d72e929e58faed5a07/classes.dex" />
+        sha1="9078293943d0cf69b4111b7c141456b522a463c1">
+        <dex dex="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-preference-v7-25.1.1_c02b2f59be6c91152162144166effa20d70809b9/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/exploded-aar/info.android15.nucleus/nucleus-support-v4/2.0.5/jars/classes.jar"
+        jar="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/25.1.1/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="02faccb79fd2e11fcce9cd62f78b20ef9915aa3b">
-        <dex dex="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/transforms/dex/debug/folders/1000/10/info.android15.nucleus-nucleus-support-v4-2.0.5_1408eb2c33bf3f4a3bdf0136327d05c90f14dfe3/classes.dex" />
+        sha1="c03bf57f358aa10d253f21989e93bcf6014b3b17">
+        <dex dex="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-25.1.1_862d3101f3498d50cf9e26a8dec56cab8672aa73/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -327,12 +282,12 @@
     </item>
     <item
         is-multidex="true"
-        jar="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.0.1/jars/libs/internal_impl-25.0.1.jar"
+        jar="/home/lectricas/.gradle/caches/modules-2/files-2.1/com.arello-mobile/moxy/1.4.5/9fab3764b015b170560f790b0a2a79fec84fbd24/moxy-1.4.5.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="c0bd6ffb002a85b5e7cad29f8558d1cc59539679">
-        <dex dex="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-25.0.1_5d1a8469c3d70977bfa4cd4ed0cf858e61c1cc30/classes.dex" />
+        sha1="9fab3764b015b170560f790b0a2a79fec84fbd24">
+        <dex dex="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/transforms/dex/debug/folders/1000/10/moxy-1.4.5_331f17fdbe20220f8c632af85387a641ea16c98b/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -354,6 +309,24 @@
     </item>
     <item
         is-multidex="true"
+        jar="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/exploded-aar/com.android.support/design/25.1.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="cd7951e04cfb9a8bf008d544a478d9a8d8192d38">
+        <dex dex="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-design-25.1.1_a25f02e55d3fca5b2ab9e113daa923d61e09d71d/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/25.1.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="0d191c1a09e4892d059e5ce749e4ad4e08129e35">
+        <dex dex="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-25.1.1_6c3c439601b454f78b90c79f4c2748fa3cb4b8fb/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/home/lectricas/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.4.1/c7c4f9e35c2fd5900da24f9872e3971801f08ce0/okhttp-3.4.1.jar"
         jumboMode="true"
         optimize="true"
@@ -372,30 +345,21 @@
     </item>
     <item
         is-multidex="true"
-        jar="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.0.1/jars/libs/internal_impl-25.0.1.jar"
+        jar="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/25.1.1/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="e5343c9d19cb19ff55f6b268c7f3fe8c9d224f6f">
-        <dex dex="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-25.0.1_51ec7467b66d8878018a0dd4146cdf5d9d07a8e5/classes.dex" />
+        sha1="c9649557905bf7a80fca9e0d54cbcb7662627860">
+        <dex dex="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-25.1.1_4d8ea9c513b7dc55749621858fd06bb3266bc9fb/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/25.0.1/jars/classes.jar"
+        jar="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.1.1/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="00d4c8eebf2b681073c72a26bd0849549e51c7cb">
-        <dex dex="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-utils-25.0.1_03355a7425be8c00788a8c27bed2ff4bce815114/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/exploded-aar/com.android.support/preference-v7/25.0.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="a200389b6c5adb38be8830f85fb5d3bb35ec9950">
-        <dex dex="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-preference-v7-25.0.0_3bc74f6f436f54d98ea0ce7541887e6c86237fcc/classes.dex" />
+        sha1="e2719c102dca3a7a5b02ce07f769362da6ddb4ab">
+        <dex dex="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-fragment-25.1.1_10ec9ea3bb9c80536ba14a5c03da9ff55724f6c2/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -417,15 +381,6 @@
     </item>
     <item
         is-multidex="true"
-        jar="/home/lectricas/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/25.0.1/support-annotations-25.0.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="a09194311f8f89c3e6db09d79f50897a889d615e">
-        <dex dex="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-25.0.1_349a3e273bfa1cdae52fa0779b4c8c732175dfa2/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="/home/lectricas/.gradle/caches/modules-2/files-2.1/com.facebook.stetho/stetho/1.3.1/2c4076b466a0eb4d6ddf5721edd35cd1adc1f317/stetho-1.3.1.jar"
         jumboMode="true"
         optimize="true"
@@ -435,12 +390,12 @@
     </item>
     <item
         is-multidex="true"
-        jar="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.0.1/jars/classes.jar"
+        jar="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.1/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="51eba4a4dd73044f90a9d58dd7ca34adbebfcf4e">
-        <dex dex="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-compat-25.0.1_90e670cd200c5a1ef5ff9d0699a161c1b59938c5/classes.dex" />
+        sha1="ecb496cc08dd52551fc5ec6db3bc0632e95a89bb">
+        <dex dex="/home/lectricas/AStudioProjects/fixedrec4_1/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-25.1.1_4c08b4f1bd6d1886a21c47e52d47fab361df3ae3/classes.dex" />
     </item>
 
 </items>
