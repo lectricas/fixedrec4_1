@@ -5,6 +5,6 @@ import com.example.xals.fixedrec4_1.repository.dto.TrackDTO;
 import com.example.xals.fixedrec4_1.mvp.base.presenter.BaseViewState;
 
 public interface TrackDisplayViewState extends BaseViewState {
-    void onTrackClosed(Fix4SuccessResultModel trackDTO);
+    void onTrackClosed(TrackDTO trackDTO);
     void onTrackForDisplayLoaded(TrackDTO dto, int gone);
 }

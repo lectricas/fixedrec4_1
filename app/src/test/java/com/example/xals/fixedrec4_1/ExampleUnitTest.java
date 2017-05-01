@@ -2,6 +2,8 @@ package com.example.xals.fixedrec4_1;
 
 import org.junit.Test;
 
+import java.lang.reflect.Proxy;
+
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -12,6 +14,15 @@ import static org.junit.Assert.assertEquals;
 public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() throws Exception {
-        assertEquals(4, 2 + 2);
+        Person person = new Person();
+
+        IPerson personproxy = (IPerson) Proxy.newProxyInstance(Person.class.getClassLoader(),
+                Person.class.getInterfaces(),
+                new NeverSleepingEye(person));
+
+        personproxy.setName("Гриша");
+        String h  = personproxy.getName() ;
+        personproxy.rename("Вася");
+
     }
 }

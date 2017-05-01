@@ -1,6 +1,7 @@
 package com.example.xals.fixedrec4_1.business.interactor.database;
 
 
+import com.example.xals.fixedrec4_1.business.model.TrackModel;
 import com.example.xals.fixedrec4_1.repository.dto.PointDTO;
 import com.example.xals.fixedrec4_1.repository.dto.TrackDTO;
 
@@ -12,11 +13,11 @@ public interface DatabaseInteractor {
 
     Observable<TrackDTO> getTackByUUIDWithPoints(String uuid);
 
-    Observable<List<TrackDTO>> getAllTracks();
+    Observable<List<TrackModel>> getAllTracks();
 
     Observable<TrackDTO> createNewTrack();
 
-    Observable<TrackDTO> closeCurrentTrack();
+    Observable<TrackDTO> closeCurrentTrack(String trackUUID);
 
     Observable<TrackDTO> getCurrentTrackNoPoints();
 

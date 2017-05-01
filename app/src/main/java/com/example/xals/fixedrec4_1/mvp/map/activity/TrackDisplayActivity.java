@@ -53,6 +53,7 @@ public class TrackDisplayActivity extends BaseActivity implements TrackDisplayVi
     Intent serviceIntent;
 
     Boolean startNewTrack;
+
     String trackUUID;
 
     @Getter
@@ -107,7 +108,7 @@ public class TrackDisplayActivity extends BaseActivity implements TrackDisplayVi
     public void onClick() {
         if (service != null) {
             service.unregisterLocationUpdates();
-            presenter.closeCurrentTrack();
+            presenter.closeCurrentTrack(trackUUID);
             stopService(serviceIntent);
         }
     }
@@ -119,7 +120,7 @@ public class TrackDisplayActivity extends BaseActivity implements TrackDisplayVi
     }
 
     @Override
-    public void onTrackClosed(Fix4SuccessResultModel closedTrack) {
+    public void onTrackClosed(TrackDTO closedTrack) {
         setResult(RESULT_OK);
         finishActivity();
     }

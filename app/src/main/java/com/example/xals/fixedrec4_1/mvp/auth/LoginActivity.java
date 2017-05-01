@@ -35,6 +35,8 @@ public class LoginActivity extends BaseActivity implements LoginViewState {
     @BindView(R.id.signUpText)
     TextView signUpText;
 
+    TextView withoutLogin;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +53,11 @@ public class LoginActivity extends BaseActivity implements LoginViewState {
     @OnClick(R.id.loginButton)
     public void login(View view) {
         presenter.login(emailField.getText().toString(), passwordField.getText().toString());
+    }
+
+    @OnClick(R.id.without_login)
+    public void withoutLogin(View view) {
+        MainActivity.startActivity(this);
     }
 
     @Override

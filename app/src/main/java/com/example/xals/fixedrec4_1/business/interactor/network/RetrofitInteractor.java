@@ -1,11 +1,13 @@
 package com.example.xals.fixedrec4_1.business.interactor.network;
 
 
+import com.example.xals.fixedrec4_1.business.model.Fix4SuccessResultModel;
 import com.example.xals.fixedrec4_1.business.model.TrackModel;
 import com.example.xals.fixedrec4_1.business.model.Transform;
 import com.example.xals.fixedrec4_1.business.model.UserModel;
 import com.example.xals.fixedrec4_1.repository.FixedRetrofitApi;
 import com.example.xals.fixedrec4_1.repository.dto.Token;
+import com.example.xals.fixedrec4_1.repository.dto.TrackDTO;
 import com.example.xals.fixedrec4_1.util.AppPreferences;
 import com.example.xals.fixedrec4_1.util.Convert;
 
@@ -50,5 +52,10 @@ public class RetrofitInteractor implements NetworkInteractor {
         return api.register(email, username, password)
                 .map(Transform::fromDto);
 
+    }
+
+    @Override
+    public Observable<Fix4SuccessResultModel> uploadTrack(String token, TrackDTO dto) {
+        return api.uploadTrack(token, dto);
     }
 }

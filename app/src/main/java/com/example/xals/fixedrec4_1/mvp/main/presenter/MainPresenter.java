@@ -26,29 +26,29 @@ public class MainPresenter extends BasePresenter<MainViewState> {
     }
 
     public void logout() {
-        ActiveAndroidHelper.deleteCurrentUser()
-                .map(Transform::fromDto)
-                .delay(1, TimeUnit.SECONDS)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(userModel -> {
-                    preferences.setToken("");
-                });
+//        ActiveAndroidHelper.deleteCurrentUser()
+//                .map(Transform::fromDto)
+//                .delay(1, TimeUnit.SECONDS)
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(userModel -> {
+//                    preferences.setToken("");
+//                });
     }
 
-    public void loadMe() {
-        network.me()
-                .map(userDto -> {
-                    ActiveAndroidHelper.saveUser(userDto);
-                    return userDto;
-                })
-                .onErrorResumeNext(ActiveAndroidHelper.getCurrentUserIfExists())
-                .map(Transform::fromDto)
-                .delay(1, TimeUnit.SECONDS)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(userModel -> {
-                    getViewState().onGotMe(userModel);
-                });
-    }
+//    public void loadMe() {
+//        network.me()
+//                .map(userDto -> {
+//                    ActiveAndroidHelper.saveUser(userDto);
+//                    return userDto;
+//                })
+//                .onErrorResumeNext(ActiveAndroidHelper.getCurrentUserIfExists())
+//                .map(Transform::fromDto)
+//                .delay(1, TimeUnit.SECONDS)
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(userModel -> {
+//                    getViewState().onGotMe(userModel);
+//                });
+//    }
 }

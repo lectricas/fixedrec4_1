@@ -17,7 +17,6 @@ import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.example.xals.fixedrec4_1.R;
 import com.example.xals.fixedrec4_1.business.model.TrackModel;
 import com.example.xals.fixedrec4_1.mvp.map.activity.TrackDisplayActivity;
-import com.example.xals.fixedrec4_1.mvp.trackslist.adapter.EndlessRecyclerViewScrollListener;
 import com.example.xals.fixedrec4_1.mvp.trackslist.presenter.TracksPresenter;
 import com.example.xals.fixedrec4_1.mvp.trackslist.presenter.TracksViewState;
 import com.example.xals.fixedrec4_1.mvp.base.BaseFragment;
@@ -62,13 +61,12 @@ public class TracksFragment extends BaseFragment implements TracksViewState {
 //        tracksRv.addOnScrollListener(new EndlessRecyclerViewScrollListener(manager) {
 //            @Override
 //            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
-//                presenter.loadTracksFromServer();
+//                presenter.loadTracks();
 //            }
 //        });
         tracksRv.setLayoutManager(manager);
         tracksRv.setAdapter(trackAdapter);
-        presenter.getAllTracksFromDb();
-        presenter.loadTracksFromServer();
+        presenter.loadTracks();
     }
 
     @Override

@@ -7,7 +7,9 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Token {
-    public static final String TOKEN_SUPPLY = "Token ";
+
+    public static final String TOKEN_EMPTY = "";
+    private static final String TOKEN_SUPPLY = "Token ";
 
     String auth_token;
 

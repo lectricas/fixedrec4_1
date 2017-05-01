@@ -1,6 +1,8 @@
 package com.example.xals.fixedrec4_1.business.interactor.database;
 
 
+import com.example.xals.fixedrec4_1.business.model.TrackModel;
+import com.example.xals.fixedrec4_1.business.model.Transform;
 import com.example.xals.fixedrec4_1.repository.dto.PointDTO;
 import com.example.xals.fixedrec4_1.repository.dto.TrackDTO;
 import com.example.xals.fixedrec4_1.repository.database.ActiveAndroidHelper;
@@ -36,8 +38,9 @@ public class ActiveAndroidInteractor implements DatabaseInteractor {
     }
 
     @Override
-    public Observable<List<TrackDTO>> getAllTracks() {
-            return ActiveAndroidHelper.getAllTracks();
+    public Observable<List<TrackModel>> getAllTracks() {
+            return ActiveAndroidHelper.getAllTracks()
+                    .map(Transform::fromDtoList);
     }
 
     //пока не создали новый, будет этот трэк
@@ -57,8 +60,8 @@ public class ActiveAndroidInteractor implements DatabaseInteractor {
     }
 
     @Override
-    public Observable<TrackDTO> closeCurrentTrack() {
-        return ActiveAndroidHelper.getTrackByUUID(preferences.getCurrentTrackUUID())
+    public Observable<TrackDTO> closeCurrentTrack(String trackUUID) {
+        return ActiveAndroidHelper.getTrackByUUID(trackUUID)
                 .flatMap(trackDTO -> {
                     trackDTO.setDateClosed(Convert.getCurrentDate());
                     trackDTO.setDateUpdated(Convert.getCurrentDate());

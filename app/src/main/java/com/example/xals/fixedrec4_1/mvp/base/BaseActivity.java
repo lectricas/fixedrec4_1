@@ -35,7 +35,7 @@ public abstract class BaseActivity extends MvpAppCompatActivity implements BaseV
         if (addBackStack) {
             fragmentTransaction.addToBackStack(fragment.getClass().getSimpleName());
         }
-        fragmentTransaction.commitAllowingStateLoss();
+        fragmentTransaction.commit();
     }
 
     @Override
