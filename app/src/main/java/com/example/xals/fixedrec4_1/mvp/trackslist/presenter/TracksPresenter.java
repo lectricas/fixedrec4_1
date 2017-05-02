@@ -12,16 +12,12 @@ import com.example.xals.fixedrec4_1.business.interactor.network.NetworkInteracto
 import com.example.xals.fixedrec4_1.business.interactor.viewbindings.IViewInteractor;
 import com.example.xals.fixedrec4_1.business.model.Transform;
 import com.example.xals.fixedrec4_1.mvp.base.presenter.BasePresenter;
-import com.example.xals.fixedrec4_1.repository.dto.PointDTO;
-import com.example.xals.fixedrec4_1.repository.dto.Token;
 import com.tbruyelle.rxpermissions.RxPermissions;
-
 
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
-import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -40,7 +36,15 @@ public class TracksPresenter extends BasePresenter<TracksViewState> {
     @Inject
     IViewInteractor view;
 
-
+    public void getAllTracksFromDb() {
+        database.getAllTracks()
+                .map(Transform::fromDtoList)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(trackDTOs -> {
+                    getViewState().onGotTracks(trackDTOs);
+                }, this::returnError);
+    }
 
     public void createNewTrack() {
         database.createNewTrack()

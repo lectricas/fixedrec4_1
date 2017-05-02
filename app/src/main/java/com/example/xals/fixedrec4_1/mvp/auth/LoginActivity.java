@@ -26,13 +26,13 @@ public class LoginActivity extends BaseActivity implements LoginViewState {
     @InjectPresenter
     LoginPresenter presenter;
 
-    @BindView(R.id.emailField)
+    @BindView(R.id.email_field)
     EditText emailField;
-    @BindView(R.id.passwordField)
+    @BindView(R.id.password_field)
     EditText passwordField;
-    @BindView(R.id.loginButton)
+    @BindView(R.id.login_button)
     Button loginButton;
-    @BindView(R.id.signUpText)
+    @BindView(R.id.sign_up_text)
     TextView signUpText;
 
     TextView withoutLogin;
@@ -45,12 +45,12 @@ public class LoginActivity extends BaseActivity implements LoginViewState {
         presenter.listernForCredentialsInput(emailField, passwordField, loginButton);
     }
 
-    @OnClick(R.id.signUpText)
+    @OnClick(R.id.sign_up_text)
     public void signUp(View view) {
         SignUpActivity.startActivity(this);
     }
 
-    @OnClick(R.id.loginButton)
+    @OnClick(R.id.login_button)
     public void login(View view) {
         presenter.login(emailField.getText().toString(), passwordField.getText().toString());
     }

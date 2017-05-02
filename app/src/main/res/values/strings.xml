@@ -63,9 +63,7 @@
     <string name="login_error_title">Error!</string>
     <string name="login_button_label">Login</string>
     <string name="sign_up_text">Sign Up!</string>
-    <string name="proceed_without_login">Proceed without login</string>
+    <string name="without_login">Proceed without login</string>
     <string name="title_activity_login">Sign in</string>
     <string name="action_logout">Logout</string>
-
-
 </resources>

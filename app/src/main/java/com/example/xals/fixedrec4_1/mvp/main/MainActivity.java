@@ -51,10 +51,6 @@ public class MainActivity extends BaseActivity
         switchFragment(new TracksFragment(), false);
     }
 
-    public void onTestLoaded(Fix4SuccessResultModel model) {
-        Log.d("MainActivity", model.toString());
-    }
-
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
 

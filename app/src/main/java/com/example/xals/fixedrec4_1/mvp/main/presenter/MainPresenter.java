@@ -36,7 +36,7 @@ public class MainPresenter extends BasePresenter<MainViewState> {
 //                });
     }
 
-//    public void loadMe() {
+    public void loadMe() {
 //        network.me()
 //                .map(userDto -> {
 //                    ActiveAndroidHelper.saveUser(userDto);
@@ -50,5 +50,5 @@ public class MainPresenter extends BasePresenter<MainViewState> {
 //                .subscribe(userModel -> {
 //                    getViewState().onGotMe(userModel);
 //                });
-//    }
+    }
 }
