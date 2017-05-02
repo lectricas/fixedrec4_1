@@ -6,7 +6,7 @@ import com.example.xals.fixedrec4_1.business.model.Transform;
 import com.example.xals.fixedrec4_1.repository.dto.PointDTO;
 import com.example.xals.fixedrec4_1.repository.dto.TrackDTO;
 import com.example.xals.fixedrec4_1.repository.database.ActiveAndroidHelper;
-import com.example.xals.fixedrec4_1.util.AppPreferences;
+import com.example.xals.fixedrec4_1.repository.AppPreferences;
 import com.example.xals.fixedrec4_1.util.Convert;
 
 import java.util.List;

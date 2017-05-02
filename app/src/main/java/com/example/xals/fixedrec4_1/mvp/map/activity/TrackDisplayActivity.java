@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -120,7 +121,7 @@ public class TrackDisplayActivity extends BaseActivity implements TrackDisplayVi
     }
 
     @Override
-    public void onTrackClosed(TrackDTO closedTrack) {
+    public void onTrackClosed(@Nullable Fix4SuccessResultModel closedTrack) {
         setResult(RESULT_OK);
         finishActivity();
     }

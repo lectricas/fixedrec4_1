@@ -14,6 +14,7 @@ import com.example.xals.fixedrec4_1.repository.dto.TrackDTO;
 import javax.inject.Inject;
 
 import rx.Observable;
+import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -32,31 +33,26 @@ public class TrackViewPresenter extends BasePresenter<TrackDisplayViewState> {
     }
 
     public void closeCurrentTrack(String trackUUID) {
-
-        return Observable.just(preferences.getToken())
-                .flatMap(tokenS -> {
-                    return database.closeCurrentTrack(trackUUID)
-                            .flatMap(trackDTO -> {
-                                if (tokenS.equals(Token.TOKEN_EMPTY)) {
-                                    return null;
-                                } else {
-                                    return network.uploadTrack(Token.configure(preferences.getToken()), trackDTO);
-                                }
-                            })
-                .flatMap(trackDTO -> {
-                    return trackDTO;
-                })
-                            .subscribeOn(Schedulers.io())
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe(trackDTO -> {
-                                getViewState().onTrackClosed(trackDTO);
-                            }, throwable -> {
-                                Log.d("TrackViewPresenter", "throwable:" + throwable);
-                            });
+        Subscription s1 = Observable.just(preferences.getToken())
+                .flatMap(tokenS ->
+                        database.closeCurrentTrack(trackUUID)
+                                .flatMap(trackDTO -> {
+                                    if (tokenS.equals(Token.TOKEN_EMPTY)) {
+                                        return Observable.just(null);
+                                    } else {
+                                        return network.uploadTrack(Token.configure(preferences.getToken()), trackDTO);
+                                    }
+                                }))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(response -> {
+                    getViewState().onTrackClosed(response);
+                }, this::returnError);
+        unsubscribeOnDestroy(s1);
     }
 
     public void getTrackForDisplay(String trackUUID) {
-        databaseInteractor.getTackByUUIDWithPoints(trackUUID)
+        Subscription s1 = database.getTackByUUIDWithPoints(trackUUID)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(dto -> {
@@ -65,6 +61,7 @@ public class TrackViewPresenter extends BasePresenter<TrackDisplayViewState> {
                     } else {
                         getViewState().onTrackForDisplayLoaded(dto, View.GONE);
                     }
-                });
+                }, this::returnError);
+        unsubscribeOnDestroy(s1);
     }
 }

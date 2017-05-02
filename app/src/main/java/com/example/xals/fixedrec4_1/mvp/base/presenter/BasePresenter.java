@@ -8,7 +8,7 @@ import android.widget.EditText;
 import com.arellomobile.mvp.MvpPresenter;
 import com.example.xals.fixedrec4_1.error.FixedCustomError;
 import com.example.xals.fixedrec4_1.repository.FixedRetrofitApi;
-import com.example.xals.fixedrec4_1.util.AppPreferences;
+import com.example.xals.fixedrec4_1.repository.AppPreferences;
 import com.example.xals.fixedrec4_1.util.RxBus;
 import com.jakewharton.rxbinding.widget.RxTextView;
 import com.jakewharton.rxbinding.widget.TextViewTextChangeEvent;

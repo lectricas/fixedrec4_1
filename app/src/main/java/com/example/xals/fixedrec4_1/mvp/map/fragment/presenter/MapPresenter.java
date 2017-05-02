@@ -5,7 +5,7 @@ import android.util.Log;
 import com.arellomobile.mvp.InjectViewState;
 import com.example.xals.fixedrec4_1.repository.dto.PointDTO;
 import com.example.xals.fixedrec4_1.mvp.base.presenter.BasePresenter;
-import com.example.xals.fixedrec4_1.util.AppPreferences;
+import com.example.xals.fixedrec4_1.repository.AppPreferences;
 
 import javax.inject.Inject;
 

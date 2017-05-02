@@ -2,7 +2,7 @@ package com.example.xals.fixedrec4_1.business.interactor.viewbindings;
 
 
 import com.example.xals.fixedrec4_1.repository.database.ActiveAndroidHelper;
-import com.example.xals.fixedrec4_1.util.AppPreferences;
+import com.example.xals.fixedrec4_1.repository.AppPreferences;
 
 import javax.inject.Inject;
 

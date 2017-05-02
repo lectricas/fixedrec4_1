@@ -1,4 +1,4 @@
-package com.example.xals.fixedrec4_1.util;
+package com.example.xals.fixedrec4_1.repository;
 
 
 import proxypref.annotation.DefaultLong;

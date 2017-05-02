@@ -1,12 +1,15 @@
 package com.example.xals.fixedrec4_1.business.interactor.network;
 
 
+import com.example.xals.fixedrec4_1.business.interactor.database.DatabaseInteractor;
+import com.example.xals.fixedrec4_1.business.model.Fix4SuccessResultModel;
 import com.example.xals.fixedrec4_1.business.model.TrackModel;
 import com.example.xals.fixedrec4_1.business.model.Transform;
 import com.example.xals.fixedrec4_1.business.model.UserModel;
 import com.example.xals.fixedrec4_1.repository.FixedRetrofitApi;
 import com.example.xals.fixedrec4_1.repository.dto.Token;
-import com.example.xals.fixedrec4_1.util.AppPreferences;
+import com.example.xals.fixedrec4_1.repository.dto.TrackDTO;
+import com.example.xals.fixedrec4_1.repository.AppPreferences;
 import com.example.xals.fixedrec4_1.util.Convert;
 
 import java.util.List;
@@ -15,7 +18,6 @@ import java.util.concurrent.TimeUnit;
 import javax.inject.Inject;
 
 import rx.Observable;
-import rx.functions.Func1;
 
 public class RetrofitInteractor implements NetworkInteractor {
 
@@ -25,7 +27,7 @@ public class RetrofitInteractor implements NetworkInteractor {
     DatabaseInteractor database;
 
     @Inject
-    public RetrofitInteractor(FixedRetrofitApi api, AppPreferences preferences) {
+    public RetrofitInteractor(FixedRetrofitApi api, AppPreferences preferences, DatabaseInteractor databaseInteractor) {
         super();
         this.preferences = preferences;
         this.api = api;
@@ -37,10 +39,11 @@ public class RetrofitInteractor implements NetworkInteractor {
         return Observable.defer(() -> Observable.just(preferences.getToken()))
                 .delay(1, TimeUnit.SECONDS)
                 .flatMap(token -> {
-                    if (token.equals("")) {
+                    if (token.equals(Token.TOKEN_EMPTY)) {
                         return database.getAllTracks();
                     } else {
                         return api.loadTracks(Token.configure(preferences.getToken()), preferences.getLastUpdateTime())
+                                .map(Transform::fromDtoList)
                                 .onErrorResumeNext(throwable -> {
                                     return database.getAllTracks();
                                 });
@@ -48,7 +51,7 @@ public class RetrofitInteractor implements NetworkInteractor {
                 })
                 .map(trackDTOs -> {
                     preferences.setLastUpdateTime(Convert.getCurrentDate().getTime());
-                    return Transform.fromDtoList(trackDTOs);
+                   return trackDTOs;
                 });
     }
 

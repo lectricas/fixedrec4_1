@@ -11,7 +11,7 @@ import com.example.xals.fixedrec4_1.business.interactor.network.RetrofitInteract
 import com.example.xals.fixedrec4_1.business.interactor.viewbindings.IViewInteractor;
 import com.example.xals.fixedrec4_1.business.interactor.viewbindings.ViewInteractor;
 import com.example.xals.fixedrec4_1.repository.FixedRetrofitApi;
-import com.example.xals.fixedrec4_1.util.AppPreferences;
+import com.example.xals.fixedrec4_1.repository.AppPreferences;
 import com.example.xals.fixedrec4_1.util.RxBus;
 import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.google.gson.Gson;
