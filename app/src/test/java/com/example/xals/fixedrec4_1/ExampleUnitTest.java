@@ -14,15 +14,8 @@ import static org.junit.Assert.assertEquals;
 public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() throws Exception {
-        Person person = new Person();
-
-        IPerson personproxy = (IPerson) Proxy.newProxyInstance(Person.class.getClassLoader(),
-                Person.class.getInterfaces(),
-                new NeverSleepingEye(person));
-
-        personproxy.setName("Гриша");
-        String h  = personproxy.getName() ;
-        personproxy.rename("Вася");
-
+        String i = "5";
+        int k = 11;
+        System.out.print(i + k);
     }
 }
