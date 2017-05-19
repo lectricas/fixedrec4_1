@@ -8,3 +8,11 @@ The track path will be stored on you device, as well as uploaded to the server w
 Server and site are no available at http://fixedrec.pythonanywhere.com/
 
 Connections are not secured, API is public.
+
+License
+-------
+
+Distributed under the MIT License.
+See [LICENSE.txt] for details.
+
+[LICENSE.txt]: LICENSE.txt
